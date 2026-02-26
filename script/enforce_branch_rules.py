@@ -111,12 +111,14 @@ def main():
             
         time.sleep(1.0) # Rate limiting
             
-        # 2. Evaluate Release/Main Branch
+        # 2. Evaluate Release/Main/Master Branch
         active_prod_branch = None
         if check_branch_exists(repo, "release"):
             active_prod_branch = "release"
         elif check_branch_exists(repo, "main"):
             active_prod_branch = "main"
+        elif check_branch_exists(repo, "master"):
+            active_prod_branch = "master"
             
         if active_prod_branch:
              apply_protection(repo, active_prod_branch, release_rules)
