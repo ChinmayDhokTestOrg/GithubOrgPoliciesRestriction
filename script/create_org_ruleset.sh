@@ -13,7 +13,12 @@
 # - You must be an Organization Owner.
 # ==============================================================================
 
-ORG_NAME=${ORGANIZATION:-"ChinmayDhokTestOrg"}
+ORG_NAME=${ORGANIZATION}
+
+if [ -z "$ORG_NAME" ]; then
+  echo "Error: ORGANIZATION environment variable is required."
+  exit 1
+fi
 RULESET_NAME="Enforce Standard Branch Flows"
 
 echo "Creating Organization Ruleset ('$RULESET_NAME') for: $ORG_NAME"

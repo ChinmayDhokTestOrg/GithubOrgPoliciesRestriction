@@ -15,13 +15,20 @@ This repository contains scripts and configurations for automating governance po
 
 ## Prerequisites
 
-- **Authentication:** `gh auth login` with appropriate scopes (`Administration`, `Custom properties`).
-- **Data Files:** Ensure `github-full-inventory.csv` and `team-access-by-repo.csv` are present in `script/`.
+1. **GitHub Organization Owner:** You must have owner privileges for the target organization.
+2. **Authentication Token:** You must create a Personal Access Token (PAT) with the following scopes:
+   - **Classic PAT (Recommended):** `admin:org`, `repo`
+   - **Fine-Grained PAT (Org Permissions):** `Administration` (Read/Write), `Custom properties` (Read/Write)
+3. **Repository Secret:** Add your PAT as a Repository Secret named `ORG_ADMIN_TOKEN` in the repository running these tools.
+4. **Data (Optional):** To map teams to repositories, upload a `team-access-by-repo.csv` to the `script/` folder using `script/team-access-by-repo.template.csv` as a guide.
 
 ## Usage
 
-Example execution for applying team properties:
-```bash
-export ORGANIZATION="YourTestOrgName"
-python script/apply_team_properties.py
-```
+This framework is completely organization-agnostic and relies entirely on GitHub Actions.
+
+1. Navigate to the **Actions** tab in this repository.
+2. Select the **GitHub Governance Organization Sync** workflow.
+3. Click **Run workflow**.
+4. Input your Target Organization Name (e.g., `MyCompanyOrg`).
+5. Select whether to deploy the **Custom Properties** and/or the **Branch Protection Rulesets**.
+6. Execute the action and review the logs!

@@ -3,6 +3,11 @@ name: GitHub Governance Organization Sync
 on:
   workflow_dispatch:
     inputs:
+      organization_name:
+        description: 'Target GitHub Organization Name'
+        required: true
+        type: string
+        default: 'ChinmayDhokTestOrg'
       sync_properties:
         description: 'Sync Custom Properties (Team mapping)'
         required: true
@@ -45,19 +50,19 @@ jobs:
         if: ${{ github.event.inputs.sync_properties == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
-          ORGANIZATION: 'ChinmayDhokTestOrg'
+          ORGANIZATION: ${{ github.event.inputs.organization_name }}
         run: ./script/create_org_properties.sh
 
       - name: Apply Team Properties (CSV Mapping)
         if: ${{ github.event.inputs.sync_properties == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
-          ORGANIZATION: 'ChinmayDhokTestOrg'
+          ORGANIZATION: ${{ github.event.inputs.organization_name }}
         run: python script/apply_team_properties.py
 
       - name: Create/Update Organization Ruleset
         if: ${{ github.event.inputs.sync_branch_rules == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
-          ORGANIZATION: 'ChinmayDhokTestOrg'
+          ORGANIZATION: ${{ github.event.inputs.organization_name }}
         run: ./script/create_org_ruleset.sh

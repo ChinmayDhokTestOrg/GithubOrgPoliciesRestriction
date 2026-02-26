@@ -5,7 +5,7 @@ import time
 import os
 import sys
 
-ORG_NAME = os.environ.get("ORGANIZATION", "ChinmayDhokTestOrg")
+ORG_NAME = os.environ.get("ORGANIZATION")
 INVENTORY_FILE = "script/github-full-inventory.csv"
 ACCESS_FILE = "script/team-access-by-repo.csv"
 
@@ -18,9 +18,14 @@ def run_gh_command(args):
         return None, e.stderr.strip()
 
 def main():
-    if not os.path.exists(ACCESS_FILE) or not os.path.exists(INVENTORY_FILE):
-        print(f"Error: Missing CSV files. Please ensure '{INVENTORY_FILE}' and '{ACCESS_FILE}' exist.")
+    if not ORG_NAME:
+        print("Error: ORGANIZATION environment variable is required.")
         sys.exit(1)
+
+    if not os.path.exists(ACCESS_FILE):
+        print(f"[INFO] Skipping Team assignment: '{ACCESS_FILE}' not found.")
+        print("To automatically map teams to repositories, provide a CSV file with 'repo', 'team', and 'role' columns.")
+        sys.exit(0) # Exit peacefully!
 
     print(f"Loading organization mapping data for '{ORG_NAME}'...")
     print(f"Note: Ensure the Custom Property 'Team' is created in the Org Settings first.")

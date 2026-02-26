@@ -6,7 +6,12 @@
 # Triggers via `gh` CLI in a GitHub Action to ensure the required Custom Properties
 # exist at the organization level before they are assigned to repositories.
 
-ORG_NAME=${ORGANIZATION:-"ChinmayDhokTestOrg"}
+ORG_NAME=${ORGANIZATION}
+
+if [ -z "$ORG_NAME" ]; then
+  echo "Error: ORGANIZATION environment variable is required."
+  exit 1
+fi
 
 echo "Creating/Updating Custom Property Schemas for: $ORG_NAME..."
 
