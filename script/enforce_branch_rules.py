@@ -6,7 +6,7 @@ import os
 import sys
 
 ORG_NAME = os.environ.get("ORGANIZATION", "ChinmayDhokTestOrg")
-INVENTORY_FILE = ".github/scripts/github-full-inventory.csv"
+INVENTORY_FILE = "script/github-full-inventory.csv"
 
 def run_gh_command(args):
     """Executes a gh CLI command and returns stdout and stderr."""

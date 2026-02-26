@@ -3,6 +3,7 @@ name: Enforce Release Branch Flow
 on:
   pull_request:
     branches:
+      - stage
       - release
       - main
 
@@ -16,10 +17,17 @@ jobs:
           echo "Target Branch: ${{ github.base_ref }}"
           echo "Source Branch: ${{ github.head_ref }}"
           
-          if [[ "${{ github.head_ref }}" != "stage" ]]; then
-            echo "::error title=Invalid Source Branch::Direct Pull Requests to '${{ github.base_ref }}' are only allowed from the 'stage' branch."
-            echo "::error::Please merge your feature branch ('${{ github.head_ref }}') into 'stage' first, and then create a PR from 'stage' to '${{ github.base_ref }}'."
-            exit 1
+          if [[ "${{ github.base_ref }}" == "release" || "${{ github.base_ref }}" == "main" ]]; then
+            if [[ "${{ github.head_ref }}" != "stage" ]]; then
+              echo "::error title=Invalid Source Branch::Direct Pull Requests to '${{ github.base_ref }}' are only allowed from the 'stage' branch."
+              echo "::error::Please merge your feature branch ('${{ github.head_ref }}') into 'stage' first, and then create a PR from 'stage' to '${{ github.base_ref }}'."
+              exit 1
+            fi
+            echo "Source branch is 'stage'. Proceeding..."
+          elif [[ "${{ github.base_ref }}" == "stage" ]]; then
+            if [[ "${{ github.head_ref }}" == "release" || "${{ github.head_ref }}" == "main" ]]; then
+               echo "::error title=Invalid Source Branch::Cannot merge '${{ github.head_ref }}' directly back into 'stage' in this flow."
+               exit 1
+            fi
+            echo "Feature branch merging into stage. Proceeding..."
           fi
-          
-          echo "Source branch is 'stage'. Proceeding..."
