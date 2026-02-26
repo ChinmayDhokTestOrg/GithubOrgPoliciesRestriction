@@ -1,9 +1,9 @@
-import pandas as pd
 import subprocess
 import json
 import time
 import os
 import sys
+import csv
 
 ORG_NAME = os.environ.get("ORGANIZATION")
 INVENTORY_FILE = "script/github-full-inventory.csv"
@@ -46,33 +46,28 @@ def main():
         pass
     
     try:
-        access_df = pd.read_csv(ACCESS_FILE)
-        
-        # Standardize column extraction based on reasonable expectations of CSV dumps.
-        # Ensure we capture 'role' if present to filter only by Write/Admin/Maintain
-        eligible_roles = ['admin', 'write', 'maintain']
-        
-        columns = [col.lower() for col in access_df.columns]
-        
-        repo_col = next((col for col in access_df.columns if 'repo' in col.lower()), access_df.columns[0])
-        team_col = next((col for col in access_df.columns if 'team' in col.lower()), access_df.columns[1])
-        role_col = next((col for col in access_df.columns if 'role' in col.lower()), None)
-        
-        if role_col:
-            access_df[role_col] = access_df[role_col].astype(str).str.lower().str.strip()
-            access_df = access_df[access_df[role_col].isin(eligible_roles)]
-            
+        # Load CSV using standard library
         repo_teams = {}
-        
-        for _, row in access_df.iterrows():
-            repo = str(row[repo_col]).strip()
-            team = str(row[team_col]).strip()
-            if repo and team and str(team).lower() != 'nan':
-                if repo not in repo_teams:
-                    repo_teams[repo] = []
-                if team not in repo_teams[repo]:
-                    repo_teams[repo].append(team)
-            
+        with open(ACCESS_FILE, mode='r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                repo_name = row.get('repo', '').strip()
+                team_name = row.get('team', '').strip()
+                role_name = row.get('role', '').strip()
+
+                if not repo_name or not team_name:
+                    continue
+
+                # Strip potential org prefixes
+                if "/" in repo_name:
+                    repo_name = repo_name.split("/")[-1]
+
+                # Only map if the role implies significant access
+                if role_name.lower() in ['admin', 'write', 'maintain']:
+                    if repo_name not in repo_teams:
+                        repo_teams[repo_name] = []
+                    if team_name not in repo_teams[repo_name]:
+                        repo_teams[repo_name].append(team_name)
     except Exception as e:
         print(f"Error reading and parsing CSVs: {e}")
         sys.exit(1)

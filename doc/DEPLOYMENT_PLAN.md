@@ -4,36 +4,23 @@ This document outlines the steps required to deploy and run the GitHub Governanc
 
 ## Prerequisites
 
-1.  **Authentication:** The scripts require a GitHub Personal Access Token (PAT) or a GitHub App token with the following scopes/permissions across the organization's repositories:
-    *   `Administration` (Read/Write) - for branch protection rules.
-    *   `Custom properties` (Read/Write) - for assigning team properties.
-    *   `Metadata` (Read-only) - to verify branch existence.
+1.  **Authentication:** The organization owner must create a GitHub Personal Access Token (PAT) with the following scopes/permissions across the organization's repositories:
+    *   **Classic PAT:** `admin:org`, `repo`
+    *   **Fine-Grained PAT (Org Permissions):** `Administration` (Read/Write), `Custom properties` (Read/Write)
 2.  **Environment:**
-    *   Python 3.8+
-    *   GitHub CLI (`gh`) installed and authenticated.
-    *   Python `pandas` library (`pip install pandas`).
-3.  **Data Files:**
-    *   `script/github-full-inventory.csv`
-    *   `script/team-access-by-repo.csv`
+    *   No local environment is strictly required, as the governance synchronization runs natively within GitHub Actions.
+3.  **Data Files (Optional):**
+    *   If you intend to map specific teams to repositories, you must provide a `script/team-access-by-repo.csv` using `script/team-access-by-repo.template.csv` as a guide. If not provided, the sync will gracefully skip this step.
 
 ## Deployment Strategy
 
 ### Phase 1: Local Testing & Validation (Dry Run)
-*Status: Completed during development.*
+*Status: Deprecated.* 
 
-1.  Ensure `.csv` files are placed in `script/`.
-2.  Set the target organization environment variable:
-    ```bash
-    export ORGANIZATION="YourTestOrgName"
-    ```
-3.  Authenticate GitHub CLI:
-    ```bash
-    gh auth login
-    ```
-4.  Execute scripts locally to monitor output and verify API calls function as expected without rate limiting crashing the process.
+With the shift to Organization-Level APIs, local dry-running is discouraged. Properties and Rulesets are provisioned globally. To test the workflow, execute it against a sandbox/test organization first.
 
-### Phase 2: Production Execution (Repository by Repository)
-*Status: Pending execution.*
+### Phase 2: Production Execution (GitHub Actions)
+*Status: Active Strategy.*
 
 Due to the volume of repositories (412+), it is recommended to run the automation directly via GitHub Actions to avoid local API rate limits or connection drops.
 
@@ -48,12 +35,12 @@ Due to the volume of repositories (412+), it is recommended to run the automatio
     *   This is handled automatically by the workflow executing `script/create_org_ruleset.sh`.
     *   *Validation: Check your Organization Settings -> Rules -> Rulesets to verify the "Enforce Standard Branch Flows" ruleset is active.*
 
-### Phase 3: Automation via CI/CD (Future State)
-To ensure continuous compliance, these scripts should be integrated into a scheduled GitHub Actions workflow.
+### Phase 3: Continuous Automation
+To ensure continuous compliance across newly created repositories, this Action can be triggered manually or on a schedule. 
 
-1.  Create a secret `ORG_ADMIN_TOKEN` at the organization level containing a PAT with the necessary scopes.
-2.  Enable the `.github/workflows/github-governance-sync.yml` workflow (ensure it is configured to trigger on a `schedule` or `workflow_dispatch`).
-3.  Monitor workflow runs for failures caused by updated repository inventories or API changes.
+1.  Ensure the repository secret `ORG_ADMIN_TOKEN` exists and has the necessary organizational scopes.
+2.  Navigate to the **Actions** tab.
+3.  Select the **GitHub Governance Organization Sync** workflow and run it with your target organization's name to instantly synchronize all rules and properties.
 
 ## Rollback Plan
 If incorrect rules or properties are applied:

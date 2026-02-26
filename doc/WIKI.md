@@ -10,9 +10,9 @@ A brief summary explaining that the organization is enforcing structural integri
 
 ### 2. Ownership & Custom Properties
 *How do we track ownership?*
-- Explanation of the `Team` custom property.
-- Details on how the `team-access-by-repo.csv` feed dictates assignments.
-- Information on where developers can view a repository's ascribed team (in the repo settings/overview).
+- GitHub **Custom Properties** are now the system of record for repository metadata. This includes properties like `Team`, `BU`, `Environment`, `Compliance_Level`, and `Data_Sensitivity`.
+- Property assignments are dictated by centralized mapping documents (e.g., `doc/ONLINESALES_AI_REPO_MAPPING.md`).
+- Developers and managers can view a repository's ascribed properties in the repository's Settings or on the organization's Repository overview page.
 
 ### 3. Branching Strategy & Restrictions
 *What rules are enforced?*
@@ -21,11 +21,22 @@ A brief summary explaining that the organization is enforcing structural integri
 
 ### 4. Workflows & Automation
 *How is it applied?*
-- Description of the daily/weekly sync process.
-- Brief overview of the `.github/workflows/github-governance-sync.yml` automation pipeline (link to the workflow file or internal run logs).
+- The entire enforcement mechanism is Organization-Agnostic and runs entirely in the cloud.
+- An Organization Owner navigates to the `GitHub Governance Organization Sync` workflow in the **Actions** tab.
+- They input the target organization's name into the workflow parameters and execute it.
+- **Phase 1:** The action builds out all Custom Property schemas required by the organization.
+- **Phase 2:** The action iterates through uploaded CSVs to automatically assign teams and roles to the `Team` custom property.
+- **Phase 3:** The action provisions a massive `Enforce Standard Branch Flows` Organization Ruleset that locks down branch protections across all repositories at once.
 
 ### 5. FAQ / Troubleshooting
+### 5. FAQ / Troubleshooting
 *What if I am blocked?*
-- What to do if a repository is missing from the inventory list.
-- Who to contact to override branch protections in an emergency (Organization Admins).
-- How to update the team mapping if a repository changes ownership.
+
+**Q: My repository isn't in the mapping CSV. Does it still get protected?**
+Yes. The branch protections are applied across the entire organization (all repositories) via a fundamental Organization Ruleset. Even if your repo isn't assigned a specific `Team` property, it is still protected.
+
+**Q: I need to override branch protections in an emergency. Who do I contact?**
+Reach out to the Organization Admins. Due to the "Bypass Actors" rule we configured, only users with `OrganizationAdmin` privileges can bypass the branch protections.
+
+**Q: How do we update a repository's team mapping?**
+Update the internal mapping tracking document (e.g., `doc/ONLINESALES_AI_REPO_MAPPING.md`). Once approved by management, convert it to a CSV and an Admin will trigger the *GitHub Governance Organization Sync* workflow to push the changes.
