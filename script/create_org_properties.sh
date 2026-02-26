@@ -36,15 +36,8 @@ create_property() {
    fi
 }
 
-# 1. Team (String)
-cat << 'EOF' > prop_payload.json
-{
-  "value_type": "string",
-  "required": false,
-  "description": "The logical engineering team responsible for this repository."
-}
-EOF
-create_property "Team" "prop_payload.json"
+# Note: The Team schema is now created dynamically by apply_team_properties.py
+# because it parses the allowed values directly from the ONLINESALES_AI_REPO_MAPPING.md file.
 
 rm prop_payload.json
 echo "Schema definition complete."

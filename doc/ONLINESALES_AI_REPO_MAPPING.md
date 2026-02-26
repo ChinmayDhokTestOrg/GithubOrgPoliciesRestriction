@@ -1244,3 +1244,5 @@ An Organization-level Repository Ruleset named **"Enforce Standard Branch Flows"
 | `onlinesales-ai/ui-localium-domain-configs` | ui-write | read | [ ] |
 | `onlinesales-ai/ui-onboarding` | ui-write | write | [ ] |
 | `onlinesales-ai/ui-tools` | ui-write | write | [ ] |
+| `demo-repository` | ui | admin | [ ] |
+| `GithubOrgPoliciesRestriction` | infra | admin | [ ] |

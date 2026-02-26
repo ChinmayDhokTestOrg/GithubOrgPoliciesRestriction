@@ -29,13 +29,52 @@ def main():
     if DRY_RUN:
         print("*** DRY RUN MODE ENABLED: No changes will be applied to GitHub ***")
 
+    # We need to read the mapping file first to extract allowed values
+    try:
+        with open(MAPPING_FILE, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+    except Exception as e:
+        print(f"Error reading Markdown table: {e}")
+        sys.exit(1)
+
+    distinct_teams = set()
+    repo_data = {}
+
+    for line in lines:
+        if line.strip().startswith('|') and 'Repository Name' not in line and '---' not in line:
+            parts = line.split('|')
+            if len(parts) >= 4:
+                repo_name = parts[1].strip().replace('`', '')
+                team_name = parts[2].strip()
+
+                if not repo_name:
+                    continue
+
+                if "/" in repo_name:
+                    repo_name = repo_name.split("/")[-1]
+                
+                if team_name:
+                    # Handle comma-separated teams if any exist in the field
+                    current_teams = [t.strip() for t in team_name.split(',')]
+                    distinct_teams.update(current_teams)
+
+                    if repo_name not in repo_data:
+                        repo_data[repo_name] = {"teams": []}
+                        
+                    for t in current_teams:
+                        if t and t not in repo_data[repo_name]["teams"]:
+                            repo_data[repo_name]["teams"].append(t)
+                            
+    print(f"Loaded {len(distinct_teams)} distinct team values for the Custom Property.")
+    
     # Make sure 'Team' property exists in the org before attempting to patch repos
     print("Checking/Creating 'Team' custom property at Org level...")
     if not DRY_RUN:
         prop_payload = {
-            "value_type": "string",
+            "value_type": "multi_select",
             "required": False,
-            "description": "The team responsible for this repository."
+            "description": "The teams responsible for this repository.",
+            "allowed_values": sorted(list(distinct_teams))
         }
         with open("team_prop_payload.json", "w") as f:
             json.dump(prop_payload, f)
@@ -43,34 +82,7 @@ def main():
         if os.path.exists("team_prop_payload.json"):
             os.remove("team_prop_payload.json")
 
-    repo_data = {}
-    try:
-        with open(MAPPING_FILE, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-            for line in lines:
-                if line.strip().startswith('|') and 'Repository Name' not in line and '---' not in line:
-                    parts = line.split('|')
-                    if len(parts) >= 4:
-                        repo_name = parts[1].strip().replace('`', '')
-                        team_name = parts[2].strip()
-                        role_name = parts[3].strip()
-
-                        if not repo_name:
-                            continue
-
-                        # Strip potential org prefixes
-                        if "/" in repo_name:
-                            repo_name = repo_name.split("/")[-1]
-
-                        if repo_name not in repo_data:
-                            repo_data[repo_name] = {"teams": []}
-
-                        # If user gave a team, map it
-                        if team_name and team_name not in repo_data[repo_name]["teams"]:
-                            repo_data[repo_name]["teams"].append(team_name)
-    except Exception as e:
-        print(f"Error reading and parsing Markdown table: {e}")
-        sys.exit(1)
+    # Parsing is now handled in the block above
 
     print(f"Resolved mapping for {len(repo_data)} repositories.")
     print("-" * 40)
@@ -86,17 +98,12 @@ def main():
             continue
             
         print(f"Syncing [Team] property for repository: {repo}")
-        
-        # GitHub requires the value to be a list of strings for single_select and an exact string or list based on definition
-        # If 'Team' is defined as a string, we might want to just set it to the first team or join them.
-        # Assuming we just set the exact string provided.
-        team_value = teams[0] if len(teams) == 1 else ", ".join(teams)
-        
+        # For multi_select, the value must be a JSON array of strings
         payload = {
             "properties": [
                 {
                     "property_name": "Team",
-                    "value": team_value
+                    "value": teams
                 }
             ]
         }
@@ -123,7 +130,7 @@ def main():
             print(f"  [ERROR] Failed to map property on '{repo}': {stderr}")
             fail_count += 1
         else:
-            print(f"  [SUCCESS] Assigned team: {team_value}")
+            print(f"  [SUCCESS] Assigned teams: {teams}")
             success_count += 1
              
         if not DRY_RUN:
