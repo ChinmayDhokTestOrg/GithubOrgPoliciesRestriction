@@ -10,8 +10,8 @@ This repository contains scripts and configurations for automating governance po
 
 ## Core Features
 
-1.  **Branch Protection Enforcement:** Ensures that `stage` and high-level branches (`main` or `release`) have strict pull request reviews, status checks, and access rules (via `enforce_branch_rules.py`).
-2.  **Team Property Synchronization:** Automatically assigns the GitHub Custom Property (`Team`) to repositories based on CSV access mappings (via `apply_team_properties.py`).
+1.  **Branch Protection Enforcement:** Ensures that `stage` and high-level branches (`main` or `release`) have strict pull request reviews, status checks, and access rules (via Organization Rulesets provisioned by `create_org_ruleset.sh`).
+2.  **Team Property Synchronization:** Automatically assigns the GitHub Custom Property (`Team`) to repositories based on Markdown access mappings (via `apply_team_properties.py`).
 
 ## Prerequisites
 
@@ -27,8 +27,8 @@ This repository contains scripts and configurations for automating governance po
 This framework is completely organization-agnostic and relies entirely on GitHub Actions.
 
 1. Navigate to the **Actions** tab in this repository.
-2. Select the **GitHub Governance Organization Sync** workflow.
-3. Click **Run workflow**.
-4. Input your Target Organization Name (e.g., `MyCompanyOrg`).
-5. Select whether to deploy the **Custom Properties** and/or the **Branch Protection Rulesets**.
-6. Execute the action and review the logs!
+2. You will see three distinct operational workflows:
+   - **`1. Create Organization Custom Properties`**
+   - **`2. Assign Teams to Repositories`**
+   - **`3. Enforce Branch Protection Ruleset`**
+3. Select the workflow you wish to run, click **Run workflow**, input your Target Organization Name, and execute!

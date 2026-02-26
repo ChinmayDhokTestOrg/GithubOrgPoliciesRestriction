@@ -14,7 +14,9 @@ The solution relies entirely on the GitHub REST API and GitHub CLI (`gh`) to pro
 - **Data Sources:**
   - `doc/ONLINESALES_AI_REPO_MAPPING.md`: The mapping of repositories to teams and properties.
 - **Workflows:**
-  - `github-governance-sync.yml` (Hypothetical/Planned): CI/CD pipeline to run these scripts on a schedule or manual trigger.
+  - `01-create-org-properties.yml`
+  - `02-assign-teams-to-repos.yml`
+  - `03-enforce-branch-ruleset.yml`
 
 ## 3. Detailed Design
 

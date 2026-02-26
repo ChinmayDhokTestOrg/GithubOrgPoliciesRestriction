@@ -25,7 +25,7 @@ With the shift to Organization-Level APIs, local dry-running is discouraged. Pro
 Due to the volume of repositories (412+), it is recommended to run the automation directly via GitHub Actions to avoid local API rate limits or connection drops.
 
 1.  **Create Organization Property Schemas:**
-    *   This is handled automatically by the `GitHub Governance Organization Sync` workflow executing `script/create_org_properties.sh`.
+    *   This is handled automatically by the `1. Create Organization Custom Properties` workflow executing `script/create_org_properties.sh`.
 
 2.  **Apply Team Properties to Repositories:**
     *   This is handled automatically by the workflow executing `script/apply_team_properties.py`.
@@ -40,7 +40,11 @@ To ensure continuous compliance across newly created repositories, this Action c
 
 1.  Ensure the repository secret `ORG_ADMIN_TOKEN` exists and has the necessary organizational scopes.
 2.  Navigate to the **Actions** tab.
-3.  Select the **GitHub Governance Organization Sync** workflow and run it with your target organization's name to instantly synchronize all rules and properties.
+3.  Select any of the three workflows: 
+    - **`1. Create Organization Custom Properties`**
+    - **`2. Assign Teams to Repositories`**
+    - **`3. Enforce Branch Protection Ruleset`**
+4. Run the workflow with your target organization's name to instantly synchronize those specific rules and properties.
 
 ## Rollback Plan
 If incorrect rules or properties are applied:
