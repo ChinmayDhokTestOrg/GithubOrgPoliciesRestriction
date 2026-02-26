@@ -75,7 +75,7 @@ def main():
         "required_pull_request_reviews": {
             "dismiss_stale_reviews": True,
             "require_code_owner_reviews": False,
-            "required_approving_review_count": 1 # Test org config
+            "required_approving_review_count": 2
         },
         "restrictions": None,
         "allow_force_pushes": False,
@@ -92,7 +92,7 @@ def main():
         "required_pull_request_reviews": {
             "dismiss_stale_reviews": True,
             "require_code_owner_reviews": False,
-            "required_approving_review_count": 1
+            "required_approving_review_count": 2
         },
         "restrictions": None,
         "allow_force_pushes": False,
