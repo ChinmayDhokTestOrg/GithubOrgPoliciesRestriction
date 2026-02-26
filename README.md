@@ -20,7 +20,7 @@ This repository contains scripts and configurations for automating governance po
    - **Classic PAT (Recommended):** `admin:org`, `repo`
    - **Fine-Grained PAT (Org Permissions):** `Administration` (Read/Write), `Custom properties` (Read/Write)
 3. **Repository Secret:** Add your PAT as a Repository Secret named `ORG_ADMIN_TOKEN` in the repository running these tools.
-4. **Data (Optional):** To map teams to repositories, upload a `team-access-by-repo.csv` to the `script/` folder using `script/team-access-by-repo.template.csv` as a guide.
+4. **Data (Optional):** To map teams and properties to repositories, use the `doc/ONLINESALES_AI_REPO_MAPPING.md` markdown table file.
 
 ## Usage
 

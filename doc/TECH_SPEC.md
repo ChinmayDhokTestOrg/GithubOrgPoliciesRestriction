@@ -12,7 +12,7 @@ The solution relies entirely on the GitHub REST API and GitHub CLI (`gh`) to pro
   - `create_org_ruleset.sh`: Applies branch protections across the org via a GitHub Organization Ruleset.
   - `apply_team_properties.py`: Maps repository access to GitHub Custom Properties (`Team`).
 - **Data Sources:**
-  - `script/team-access-by-repo.csv`: An optional mapping of repositories to teams and their access roles. A blank template is provided as `team-access-by-repo.template.csv`.
+  - `doc/ONLINESALES_AI_REPO_MAPPING.md`: The mapping of repositories to teams and properties.
 - **Workflows:**
   - `github-governance-sync.yml` (Hypothetical/Planned): CI/CD pipeline to run these scripts on a schedule or manual trigger.
 
@@ -24,10 +24,10 @@ This bash script uses the `gh api` to create a singular organization-level rules
 ### 3.2 Team Property Synchronizer (`apply_team_properties.py`)
 This script translates team access rights into a GitHub Custom Property named "Team" on each repository.
 
-- **Dependencies:** `pandas`, `subprocess`, `json`, `os`, `sys`, `time`
-- **Input:** `github-full-inventory.csv`, `team-access-by-repo.csv`
+- **Dependencies:** `subprocess`, `json`, `os`, `sys`, `time`
+- **Input:** `doc/ONLINESALES_AI_REPO_MAPPING.md`
 - **Logic:**
-  1. Parses the optional `team-access-by-repo.csv` (if present).
+  1. Parses the `ONLINESALES_AI_REPO_MAPPING.md` markdown table.
   2. Filters for roles that imply significant access (`admin`, `write`, `maintain`).
   3. Drops the `onlinesales-ai/` prefix (if included) so it properly addresses the repo endpoint.
   4. Aggregates the teams associated with each repository.
@@ -35,13 +35,14 @@ This script translates team access rights into a GitHub Custom Property named "T
 
 ## 4. Error Handling
 - **Subprocess Checks:** Calls to the `gh` CLI use `check=True` where appropriate, or catch `subprocess.CalledProcessError` to gracefully handle API errors.
-- **Missing Data Mitigation:** If a user runs the workflow on a new organization but forgets to upload a CSV mapping, the workflow prints a warning and gracefully exits the assignment step without crashing the pipeline, allowing the branch rules to still deploy.
+- **Missing Data Mitigation:** If a user runs the workflow on a new organization but forgets to populate the mapping markdown, the workflow prints a warning and gracefully exits the assignment step without crashing the pipeline, allowing the branch rules to still deploy.
 
 ## 5. Security Considerations
 - The scripts rely on the environment having a valid, authenticated GitHub CLI session (`gh auth login`).
-- Custom API endpoints are constructed dynamically. Careful validation of repository names from the CSV is implicit, but assuming the CSV is generated from a trusted source.
+- Custom API endpoints are constructed dynamically. Careful validation of repository names from the markdown is implicit, but assuming the markdown is generated from a trusted source.
 
 - **Actions Secrets:** The workflow expects an `ORG_ADMIN_TOKEN` secret in the repository running the code.
 
 ## 6. Future Enhancements
-- Automate the parsing of Markdown tables (e.g., `ONLINESALES_AI_REPO_MAPPING.md`) back into CSV format via a GitHub Action to eliminate manual conversion steps for managers.
+## 6. Future Enhancements
+- Automate the parsing of Markdown tables back into other formats if external tools need CSV schemas to eliminate manual conversion steps for managers.

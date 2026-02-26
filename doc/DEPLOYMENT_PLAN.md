@@ -10,7 +10,7 @@ This document outlines the steps required to deploy and run the GitHub Governanc
 2.  **Environment:**
     *   No local environment is strictly required, as the governance synchronization runs natively within GitHub Actions.
 3.  **Data Files (Optional):**
-    *   If you intend to map specific teams to repositories, you must provide a `script/team-access-by-repo.csv` using `script/team-access-by-repo.template.csv` as a guide. If not provided, the sync will gracefully skip this step.
+    *   If you intend to map specific teams and properties to repositories, you must provide the mapping in `doc/ONLINESALES_AI_REPO_MAPPING.md`. If not provided or empty, the sync skips assignment.
 
 ## Deployment Strategy
 

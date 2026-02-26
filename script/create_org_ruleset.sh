@@ -66,6 +66,17 @@ cat << 'EOF' > ruleset_payload.json
       }
     },
     {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "required_status_checks": [
+          {
+            "context": "Verify Source Branch is Stage"
+          }
+        ]
+      }
+    },
+    {
       "type": "deletion"
     },
     {

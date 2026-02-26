@@ -9,7 +9,7 @@ on:
         type: string
         default: 'ChinmayDhokTestOrg'
       sync_properties:
-        description: 'Sync Custom Properties (Team mapping)'
+        description: 'Sync Custom Properties (Team, Project, BU mapping)'
         required: true
         type: boolean
         default: false
@@ -43,7 +43,7 @@ jobs:
           ORGANIZATION: ${{ github.event.inputs.organization_name }}
         run: ./script/create_org_properties.sh
 
-      - name: Apply Team Properties (CSV Mapping)
+      - name: Apply Properties (Markdown Mapping)
         if: ${{ github.event.inputs.sync_properties == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}

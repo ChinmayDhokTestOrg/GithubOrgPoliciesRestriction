@@ -46,49 +46,5 @@ cat << 'EOF' > prop_payload.json
 EOF
 create_property "Team" "prop_payload.json"
 
-# 2. BU (String)
-cat << 'EOF' > prop_payload.json
-{
-  "value_type": "string",
-  "required": false,
-  "description": "The Business Unit that this repository falls under."
-}
-EOF
-create_property "BU" "prop_payload.json"
-
-# 3. Environment (Single Select)
-cat << 'EOF' > prop_payload.json
-{
-  "value_type": "single_select",
-  "required": false,
-  "description": "The intended runtime environment.",
-  "allowed_values": ["Development", "Staging", "Production", "Sandbox", "DR"]
-}
-EOF
-create_property "Environment" "prop_payload.json"
-
-# 4. Compliance_Level (Single Select)
-cat << 'EOF' > prop_payload.json
-{
-  "value_type": "single_select",
-  "required": false,
-  "description": "The compliance level required for this repository.",
-  "allowed_values": ["High", "Medium", "Low", "None"]
-}
-EOF
-create_property "Compliance_Level" "prop_payload.json"
-
-# 5. Data_Sensitivity (Single Select)
-cat << 'EOF' > prop_payload.json
-{
-  "value_type": "single_select",
-  "required": false,
-  "description": "Classification of data handled by this repository.",
-  "allowed_values": ["Public", "Internal", "Confidential", "Restricted"]
-}
-EOF
-create_property "Data_Sensitivity" "prop_payload.json"
-
-
 rm prop_payload.json
 echo "Schema definition complete."
