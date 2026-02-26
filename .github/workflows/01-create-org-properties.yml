@@ -1,0 +1,33 @@
+name: 1. Create Organization Custom Properties
+
+on:
+  workflow_dispatch:
+    inputs:
+      organization_name:
+        description: 'Target GitHub Organization Name'
+        required: true
+        type: string
+        default: 'onlinesales-ai'
+
+jobs:
+  create-properties:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Check for Admin Token
+        env:
+          GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error title=Missing Secret::The ORG_ADMIN_TOKEN secret is not set in the repository."
+            echo "::error::Please create a repository secret named ORG_ADMIN_TOKEN containing a Personal Access Token (PAT) with Admin and Custom Property scopes."
+            exit 1
+          fi
+
+      - name: Create Custom Property Schemas
+        env:
+          GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
+          ORGANIZATION: ${{ github.event.inputs.organization_name }}
+        run: ./script/create_org_properties.sh
