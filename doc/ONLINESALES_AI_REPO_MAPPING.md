@@ -1,12 +1,13 @@
 # OnlineSales.ai Repository Mapping and Organization Settings
 
-This document consolidates the repository ownership mapping across the organization, generated directly from the latest `team-access-by-repo.csv`.
+This document consolidates the repository ownership mapping across the organization, generated directly from the latest Access tables.
+> **Note:** This list specifically filters out `read`-only access and generic org-wide teams (like `dev`) to establish true ownership. It also standardizes team names (e.g. `ui-write` becomes `ui`).
 
 ## Organization Settings Changes
 To enforce the governance model, the following configurations will be centrally applied at the GitHub Organization level:
 
 ### 1. Custom Properties (Repository Metadata)
-- **Property Created:** A new custom property named `Team` (Type: `String`) will be generated at the Org level.
+- **Property Created:** A new custom property named `Team` (Type: `Multi Select`) will be generated at the Org level.
 - **Assignment:** The automated scripts will loop through the table below and tag each repository with its corresponding `Team` property, definitively establishing ownership.
 
 ### 2. Organization Ruleset (Branch Protection & Approvals)
@@ -21,1228 +22,301 @@ An Organization-level Repository Ruleset named **"Enforce Standard Branch Flows"
 **Distinct Teams Found:**
 - `cw-python`
 - `cw-qa`
-- `dev`
-- `dev-external-contractors`
 - `flairminds`
 - `frigga-cloud`
 - `hyperlocal`
-- `hyperlocal-admin`
 - `hyperlocal-performance`
-- `hyperlocal-performance-da`
-- `hyperlocal-write`
 - `infra`
-- `infra-admin`
-- `infra-write`
 - `instore`
-- `instore-admin`
-- `instore-write`
 - `osmos-client-delight`
-- `osmos-client-delight-admin`
-- `osmos-client-delight-write`
 - `osmos-data`
-- `osmos-data-admin`
-- `osmos-data-contractual`
-- `osmos-data-write`
 - `osmos-media`
-- `osmos-media-admin`
-- `osmos-media-write`
-- `osmos-offsite-admin`
-- `osmos-offsite-write`
+- `osmos-offsite`
 - `osmos-performance`
-- `osmos-performance-admin`
-- `osmos-performance-write`
 - `osmos-qa`
-- `osmos-qa-admin`
-- `osmos-qa-write`
 - `osmos-rms`
-- `osmos-rms-admin`
-- `osmos-rms-interns`
-- `osmos-rms-ui-write`
-- `osmos-rms-write`
+- `osmos-rms-ui`
 - `osmos-sdk`
-- `osmos-sdk-admin`
-- `osmos-sdk-write`
-- `osmos-ui-external-contractors`
-- `osmos-ui-external-contractors-write`
+- `osmos-ui`
 - `osmso-offsite`
-- `product-team`
 - `retailium`
-- `retailium-admin`
-- `retailium-write`
 - `ui`
-- `ui-admin`
-- `ui-team-be-members`
-- `ui-write`
+- `ui-team`
 
 | Repository Name | Assigned Team | Access Role | Check |
 | :--- | :--- | :--- | :---: |
-| `onlinesales-ai/osFileStreamProcessorApp` | cw-python | write | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | cw-python | write | [ ] |
-| `onlinesales-ai/revxScripts` | cw-python | write | [ ] |
-| `onlinesales-ai/flexi-packages-ui-automation-qa` | cw-qa | write | [ ] |
-| `onlinesales-ai/marketing-api-qa` | cw-qa | read | [ ] |
-| `onlinesales-ai/marketingService` | cw-qa | read | [ ] |
-| `onlinesales-ai/osmos-ui-qa` | cw-qa | read | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | dev | read | [ ] |
-| `onlinesales-ai/android-osmos-sdk-source` | dev | read | [ ] |
-| `onlinesales-ai/ArgoCD-Prod` | dev | read | [ ] |
-| `onlinesales-ai/ArgoCD-Stage` | dev | read | [ ] |
-| `onlinesales-ai/asyncJobsService` | dev | read | [ ] |
-| `onlinesales-ai/athenaJobsV5` | dev | read | [ ] |
-| `onlinesales-ai/brandAdServerV2` | dev | read | [ ] |
-| `onlinesales-ai/campaignUserActionConsumer` | dev | read | [ ] |
-| `onlinesales-ai/catalogSyncService` | dev | read | [ ] |
-| `onlinesales-ai/claude-utility` | dev | read | [ ] |
-| `onlinesales-ai/devOpsTools` | dev | write | [ ] |
-| `onlinesales-ai/flairminds` | dev | write | [ ] |
-| `onlinesales-ai/GCP-PAM-Entitlement` | dev | read | [ ] |
-| `onlinesales-ai/hackathon-media-planner-agent` | dev | read | [ ] |
-| `onlinesales-ai/hackathon-media-planner-socketCommunicatorService` | dev | read | [ ] |
-| `onlinesales-ai/ios-osmos-sdk-source` | dev | read | [ ] |
-| `onlinesales-ai/jobWrapper` | dev | write | [ ] |
-| `onlinesales-ai/lmsCrmSyncApp` | dev | admin | [ ] |
-| `onlinesales-ai/lmsNodeEventManagerConsumer` | dev | read | [ ] |
-| `onlinesales-ai/marketplaceBillingService` | dev | read | [ ] |
-| `onlinesales-ai/onboardingScripts` | dev | read | [ ] |
-| `onlinesales-ai/os-2c2p-client` | dev | write | [ ] |
-| `onlinesales-ai/os-adserver-util` | dev | write | [ ] |
-| `onlinesales-ai/os-async-jobs-shared` | dev | write | [ ] |
-| `onlinesales-ai/os-aws-client` | dev | write | [ ] |
-| `onlinesales-ai/os-aws-client-v2` | dev | write | [ ] |
-| `onlinesales-ai/os-bullmq-client` | dev | write | [ ] |
-| `onlinesales-ai/os-campaign-cloner-shared` | dev | write | [ ] |
-| `onlinesales-ai/os-campaign-update-shared` | dev | write | [ ] |
-| `onlinesales-ai/os-clevertap-client` | dev | write | [ ] |
-| `onlinesales-ai/os-common-middlewares` | dev | write | [ ] |
-| `onlinesales-ai/os-encryption-util` | dev | write | [ ] |
-| `onlinesales-ai/os-finance-payment-lib` | dev | write | [ ] |
-| `onlinesales-ai/os-gbm-client` | dev | write | [ ] |
-| `onlinesales-ai/os-gcp-client` | dev | write | [ ] |
-| `onlinesales-ai/os-glowroad-client` | dev | write | [ ] |
-| `onlinesales-ai/os-hotstar-client` | dev | write | [ ] |
-| `onlinesales-ai/os-ifttt-shared` | dev | write | [ ] |
-| `onlinesales-ai/os-kafka-client` | dev | write | [ ] |
-| `onlinesales-ai/os-konga-client` | dev | write | [ ] |
-| `onlinesales-ai/os-moloco-client` | dev | write | [ ] |
-| `onlinesales-ai/os-novu-client` | dev | write | [ ] |
-| `onlinesales-ai/os-osmos-oauth` | dev | write | [ ] |
-| `onlinesales-ai/os-payu-client` | dev | write | [ ] |
-| `onlinesales-ai/os-pyutils` | dev | read | [ ] |
-| `onlinesales-ai/os-razorpay-client` | dev | write | [ ] |
-| `onlinesales-ai/os-snapdealcod-client` | dev | write | [ ] |
-| `onlinesales-ai/os-svc-client` | dev | write | [ ] |
-| `onlinesales-ai/os-zoho-books-client` | dev | write | [ ] |
-| `onlinesales-ai/os-zoho-desk-client` | dev | write | [ ] |
-| `onlinesales-ai/osAdsAudienceRedisPusherApp` | dev | read | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | dev | read | [ ] |
-| `onlinesales-ai/osmos-claude-plugins` | dev | write | [ ] |
-| `onlinesales-ai/osmos-iframe-sdk` | dev | write | [ ] |
-| `onlinesales-ai/osmos-workflows` | dev | read | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | dev | write | [ ] |
-| `onlinesales-ai/plaAdServer` | dev | read | [ ] |
-| `onlinesales-ai/pubsub-data-connector` | dev | read | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | dev | read | [ ] |
-| `onlinesales-ai/tech-doc-template` | dev | write | [ ] |
-| `onlinesales-ai/brandAdServerV2` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/brandAdsUIService` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/catalogSyncService` | dev-external-contractors | read | [ ] |
-| `onlinesales-ai/creativeUploadService` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/localium-catalog-svc` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/marketingService` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/os-common-middlewares` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/os-gcp-client` | dev-external-contractors | read | [ ] |
-| `onlinesales-ai/os-moloco-client` | dev-external-contractors | read | [ ] |
-| `onlinesales-ai/os-pyutils` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/os-svc-client` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/osmos-api-qa` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/publisher-svc` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/reportService` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/trackm` | dev-external-contractors | write | [ ] |
-| `onlinesales-ai/devOpsTools` | flairminds | write | [ ] |
-| `onlinesales-ai/engageService` | flairminds | read | [ ] |
-| `onlinesales-ai/flairminds` | flairminds | admin | [ ] |
-| `onlinesales-ai/gitops` | flairminds | write | [ ] |
-| `onlinesales-ai/kuberService` | flairminds | read | [ ] |
-| `onlinesales-ai/offerService` | flairminds | read | [ ] |
-| `onlinesales-ai/addToWorkloadIdentity` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/adServer-frigga` | frigga-cloud | maintain | [ ] |
-| `onlinesales-ai/adserver-setup-terraform` | frigga-cloud | admin | [ ] |
+| `GithubOrgPoliciesRestriction` | infra | admin | [ ] |
+| `demo-repository` | ui | admin | [ ] |
+| `onlinesales-ai/AdServerESOConfiguration` | osmos-client-delight | admin | [ ] |
 | `onlinesales-ai/ArgoCD-Adserver` | frigga-cloud | admin | [ ] |
+| `onlinesales-ai/ArgoCD-Prod` | frigga-cloud, infra | admin, write | [ ] |
+| `onlinesales-ai/ArgoCD-Stage` | frigga-cloud, infra, osmos-client-delight | admin | [ ] |
+| `onlinesales-ai/InstoreDigitalScreenStatusSync` | instore | admin, write | [ ] |
+| `onlinesales-ai/OS-Debezium` | infra | admin | [ ] |
+| `onlinesales-ai/UUIDGenerator` | frigga-cloud | admin | [ ] |
+| `onlinesales-ai/acquire-ui` | ui | admin, write | [ ] |
+| `onlinesales-ai/ad-server-test` | osmos-media | admin, write | [ ] |
+| `onlinesales-ai/ad-sim` | ui | admin, write | [ ] |
+| `onlinesales-ai/adServer-frigga` | frigga-cloud, infra | maintain | [ ] |
+| `onlinesales-ai/addToWorkloadIdentity` | frigga-cloud | admin | [ ] |
+| `onlinesales-ai/admin-ui` | ui | admin, write | [ ] |
+| `onlinesales-ai/adrequest-debugger` | osmos-client-delight | write | [ ] |
+| `onlinesales-ai/adserver-deployment-monitoring` | osmos-performance | write | [ ] |
+| `onlinesales-ai/adserver-setup-terraform` | frigga-cloud | admin | [ ] |
+| `onlinesales-ai/android-os-sdk` | osmos-client-delight, osmos-sdk | admin, write | [ ] |
+| `onlinesales-ai/android-osmos-sdk-source` | osmos-client-delight, osmos-sdk | admin, maintain, write | [ ] |
+| `onlinesales-ai/aresJobGen` | hyperlocal, osmos-client-delight, osmos-data, osmos-media, osmos-offsite, osmos-performance, osmos-rms, osmos-rms-ui | admin, write | [ ] |
 | `onlinesales-ai/argocd-management-cluster` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/ArgoCD-Prod` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/ArgoCD-Stage` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/argocd-terraform` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/argocd-test-frigga` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/asyncJobsService` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/athenaJobsV4BQ` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/asyncJobsService` | frigga-cloud, infra, osmos-performance, osmos-rms | admin, maintain, write | [ ] |
+| `onlinesales-ai/athenaJobsV4BQ` | frigga-cloud, infra | admin, write | [ ] |
 | `onlinesales-ai/athenaJobsV5` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/auditService` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/audience-segment-api-qa` | osmos-rms | write | [ ] |
+| `onlinesales-ai/audit-service-api-qa` | osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/auditConsumer` | osmos-rms | write | [ ] |
+| `onlinesales-ai/auditService` | frigga-cloud, osmos-rms, osmos-rms-ui | admin, triage, write | [ ] |
 | `onlinesales-ai/authentication4node` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/brandAdServerV2` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/beamEventProcessor` | osmos-media | write | [ ] |
+| `onlinesales-ai/brand-ads-ui-service-api-qa` | osmos-rms-ui | write | [ ] |
+| `onlinesales-ai/brandAdServerV2` | frigga-cloud, infra, osmos-client-delight, osmos-media, osmos-performance | admin, write | [ ] |
 | `onlinesales-ai/brandAdServerV2-frigga` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/brandAdsUIService` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/budgetEngine` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/butlerService` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/brandAdsUIService` | frigga-cloud, infra, osmos-client-delight | admin, write | [ ] |
+| `onlinesales-ai/brandads-ui` | ui | admin, write | [ ] |
+| `onlinesales-ai/budgetEngine` | frigga-cloud, osmos-offsite | admin, write | [ ] |
+| `onlinesales-ai/bulk-actions` | ui | admin, write | [ ] |
+| `onlinesales-ai/butlerService` | frigga-cloud, hyperlocal, infra, osmos-performance, osmos-rms | admin, write | [ ] |
 | `onlinesales-ai/cacheLib` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/cacheLib_frigga` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/catalogSyncService` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/craftService` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/campaignCloner` | osmos-media | maintain | [ ] |
+| `onlinesales-ai/campaignUserActionConsumer` | osmos-client-delight, osmos-media | admin, maintain, write | [ ] |
+| `onlinesales-ai/campaign_debugger_agent` | osmos-data, osmos-media | write | [ ] |
+| `onlinesales-ai/captain-js` | ui | admin, write | [ ] |
+| `onlinesales-ai/catalogSyncService` | frigga-cloud, osmos-client-delight, osmos-rms, osmos-rms-ui | admin, maintain, write | [ ] |
+| `onlinesales-ai/chrome-extension-icon-changer` | ui | admin, write | [ ] |
+| `onlinesales-ai/cis-ui` | osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/comment-service-api-qa` | osmos-rms | write | [ ] |
+| `onlinesales-ai/craftService` | frigga-cloud, infra, osmos-offsite | admin, write | [ ] |
+| `onlinesales-ai/creativeUploadService` | osmos-client-delight | write | [ ] |
+| `onlinesales-ai/dataValidationExecutorV2` | osmos-data | admin, write | [ ] |
 | `onlinesales-ai/dataflow-frigga` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/datasync-shared-config` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/dblib` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/demo-java-app` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/engageService` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/financeService` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/demo-mobile-apps` | osmos-client-delight, osmos-sdk | admin, write | [ ] |
+| `onlinesales-ai/devOpsTools` | flairminds | write | [ ] |
+| `onlinesales-ai/developers-ui` | ui | admin, write | [ ] |
+| `onlinesales-ai/documentation` | osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/domain-config-updator` | ui | admin, write | [ ] |
+| `onlinesales-ai/ds-opc-classification-prediction` | osmos-performance | write | [ ] |
+| `onlinesales-ai/ds-opc-classification-training` | osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/ds-search-relevancy-repo` | osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/ds-sku-sku-relevancy-prediction` | osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/ds-sku-sku-relevancy-training` | osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/ds-sku-sku-relevancy-v3` | osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/engageService` | frigga-cloud, infra, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/engageService-api-qa` | osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/engageServiceConsumer` | osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/experimentalCacheScripts` | osmos-performance | maintain | [ ] |
+| `onlinesales-ai/fileBasedAudienceSync` | osmos-client-delight | admin, write | [ ] |
+| `onlinesales-ai/financeService` | frigga-cloud, osmos-client-delight, osmos-offsite, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/financeServiceConsumer_deprecated` | osmos-client-delight, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/flairminds` | flairminds, hyperlocal, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/flexi-packages-ui-automation-qa` | cw-qa | write | [ ] |
+| `onlinesales-ai/flutter-ecommerce-demo-app` | osmos-client-delight | admin | [ ] |
+| `onlinesales-ai/flutter-os-sdk` | osmos-client-delight, osmos-sdk | admin, write | [ ] |
+| `onlinesales-ai/flutter-osmos-sdk-source` | osmos-client-delight, osmos-sdk | admin, write | [ ] |
 | `onlinesales-ai/frigga-engageService` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/frigga-testing-daemon` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/gcp-alerts-terraform` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/gcp-infra` | frigga-cloud | admin | [ ] |
+| `onlinesales-ai/frigga-testing-daemon` | frigga-cloud, infra | maintain, write | [ ] |
+| `onlinesales-ai/gcp-alerts-terraform` | frigga-cloud, infra | admin, write | [ ] |
+| `onlinesales-ai/gcp-infra` | frigga-cloud, infra | admin | [ ] |
+| `onlinesales-ai/gitops` | flairminds, infra | admin, write | [ ] |
 | `onlinesales-ai/gradle-wrapper` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/hadesObjects` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/hadesV2` | frigga-cloud | write | [ ] |
 | `onlinesales-ai/hotstarSharedLib` | frigga-cloud | write | [ ] |
 | `onlinesales-ai/httpRequest` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/hyperlocalCampaignConfidenceScorePopulator` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/hyperlocalForecastingModelTrainingFlow` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/instoreAdServer` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/instoreCMSSync` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/instoreSchedulingConsumer` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/instoreService` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/hyperlocal-admin-ui` | ui | admin, write | [ ] |
+| `onlinesales-ai/hyperlocal-maverick-ui` | osmos-ui, ui | admin, write | [ ] |
+| `onlinesales-ai/hyperlocal-microsite-monitor` | ui | admin, write | [ ] |
+| `onlinesales-ai/hyperlocal-microsites` | ui | admin, write | [ ] |
+| `onlinesales-ai/hyperlocal-microsites-strapi` | ui | admin, write | [ ] |
+| `onlinesales-ai/hyperlocal-partner-ui` | ui | admin, write | [ ] |
+| `onlinesales-ai/hyperlocal-pulse-ui` | osmos-ui, ui | admin, write | [ ] |
+| `onlinesales-ai/hyperlocal-shared-ui` | osmos-ui, ui | admin, write | [ ] |
+| `onlinesales-ai/hyperlocal-shared-ui-v2` | osmos-ui, ui | admin, write | [ ] |
+| `onlinesales-ai/hyperlocal-ui-qa` | ui | write | [ ] |
+| `onlinesales-ai/hyperlocalCampaignConfidenceScorePopulator` | frigga-cloud, hyperlocal | write | [ ] |
+| `onlinesales-ai/hyperlocalForecastingModelTrainingFlow` | frigga-cloud, hyperlocal | write | [ ] |
+| `onlinesales-ai/iab-url-verification` | osmos-client-delight, ui | admin, write | [ ] |
+| `onlinesales-ai/in-store-screen-registration-API` | instore | write | [ ] |
+| `onlinesales-ai/in-store-web-player` | ui | admin, write | [ ] |
+| `onlinesales-ai/instore-cms-client` | infra, instore | admin, write | [ ] |
+| `onlinesales-ai/instoreAdServer` | frigga-cloud, instore | admin, write | [ ] |
+| `onlinesales-ai/instoreAlerting` | instore | admin, write | [ ] |
+| `onlinesales-ai/instoreCMSSync` | frigga-cloud, instore | admin, write | [ ] |
+| `onlinesales-ai/instoreCampaignBookingProcessor` | instore | admin, write | [ ] |
+| `onlinesales-ai/instoreConsumer` | instore | admin, write | [ ] |
+| `onlinesales-ai/instoreRedisLoader` | infra, instore | admin, write | [ ] |
+| `onlinesales-ai/instoreSchedulingConsumer` | frigga-cloud, infra, instore | admin, write | [ ] |
+| `onlinesales-ai/instoreScripts` | infra, instore | admin, write | [ ] |
+| `onlinesales-ai/instoreService` | frigga-cloud, infra, instore | admin, write | [ ] |
+| `onlinesales-ai/instoreTranscoder` | instore | admin, write | [ ] |
+| `onlinesales-ai/ios-os-sdk` | osmos-client-delight, osmos-sdk | admin, write | [ ] |
+| `onlinesales-ai/ios-osmos-sdk-source` | osmos-client-delight, osmos-sdk | admin, maintain, write | [ ] |
 | `onlinesales-ai/java-daemon-app-template` | frigga-cloud | write | [ ] |
 | `onlinesales-ai/java-offline-app-template` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/java-shared-lib-template` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/java-shared-lib-template` | frigga-cloud, infra | maintain, write | [ ] |
 | `onlinesales-ai/java-tomcat-app-template` | frigga-cloud | write | [ ] |
 | `onlinesales-ai/jobWrapper` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/kamService` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/kuberService` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/lmsCrmSyncApp` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/lmsNodeEventManagerConsumer` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/localium-catalog-svc` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/kam-service-api-qa` | osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/kamService` | frigga-cloud, hyperlocal, instore, osmos-client-delight, osmos-data, osmos-performance, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/keywordTargetingService-api-qa` | osmos-client-delight, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/kuber-service-api-qa` | osmos-rms | write | [ ] |
+| `onlinesales-ai/kuberService` | frigga-cloud, osmos-client-delight, osmos-rms, retailium | admin, write | [ ] |
+| `onlinesales-ai/labs` | hyperlocal | admin, write | [ ] |
+| `onlinesales-ai/launcherSharedLib` | osmos-offsite, osmso-offsite | write | [ ] |
+| `onlinesales-ai/live-ads-plugin` | ui | write | [ ] |
+| `onlinesales-ai/lmsCrmSyncApp` | frigga-cloud, hyperlocal | admin, write | [ ] |
+| `onlinesales-ai/lmsNodeEventManagerConsumer` | frigga-cloud, hyperlocal, infra | admin, write | [ ] |
+| `onlinesales-ai/localium-DA-Meta-workspace` | hyperlocal-performance | write | [ ] |
+| `onlinesales-ai/localium-DA-workspace` | hyperlocal-performance | write | [ ] |
+| `onlinesales-ai/localium-catalog-svc` | frigga-cloud, hyperlocal, osmos-client-delight | admin, write | [ ] |
 | `onlinesales-ai/logger` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/logger_frigga` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/marketingService` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/logger_frigga` | frigga-cloud, infra | admin | [ ] |
+| `onlinesales-ai/marketing-api-qa` | osmos-rms | write | [ ] |
+| `onlinesales-ai/marketingService` | frigga-cloud, osmos-client-delight, osmos-media, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/marketingServiceConsumer` | osmos-media | admin, write | [ ] |
+| `onlinesales-ai/marketplaceBillingApplication` | osmos-media | admin, write | [ ] |
+| `onlinesales-ai/maverick-ui` | ui | admin, write | [ ] |
+| `onlinesales-ai/mediaPythonScripts` | osmos-client-delight, osmos-data, osmos-media, osmos-performance, osmos-rms | admin, maintain, write | [ ] |
+| `onlinesales-ai/mediaRubyScripts` | osmos-client-delight, osmos-media | admin, maintain, write | [ ] |
 | `onlinesales-ai/molocoSharedLib` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/multiVerseService` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/navigatorService` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/novuWorkflows` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/offerService` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/multiVerseService` | frigga-cloud, infra, osmos-rms, osmos-rms-ui, ui | admin, write | [ ] |
+| `onlinesales-ai/navigatorService` | frigga-cloud, instore, osmos-client-delight, osmos-data, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/novuWorkflows` | frigga-cloud, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/offerService` | frigga-cloud, osmos-client-delight, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/offsiteReportProject` | osmos-offsite | write | [ ] |
+| `onlinesales-ai/onboarding-service-api-qa` | osmos-rms | write | [ ] |
+| `onlinesales-ai/onboardingScripts` | hyperlocal, infra, instore, osmos-client-delight, osmos-data, osmos-media, osmos-offsite, osmos-performance, osmos-rms, osmos-rms-ui | admin, write | [ ] |
 | `onlinesales-ai/os-2c2p-client` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/os-adserver-util` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/os-common-middlewares` | frigga-cloud | admin | [ ] |
+| `onlinesales-ai/os-adserver-util` | frigga-cloud, infra | admin, write | [ ] |
+| `onlinesales-ai/os-bullmq` | osmos-rms | write | [ ] |
+| `onlinesales-ai/os-bullmq-client` | instore | write | [ ] |
+| `onlinesales-ai/os-client-tracker` | osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/os-cms` | osmos-rms, ui | admin, write | [ ] |
+| `onlinesales-ai/os-common-middlewares` | frigga-cloud, osmos-client-delight | admin, write | [ ] |
+| `onlinesales-ai/os-gcp-client` | osmos-client-delight | admin, write | [ ] |
 | `onlinesales-ai/os-infra-terraform` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/os-moloco-client` | osmos-client-delight | admin | [ ] |
 | `onlinesales-ai/os-pay-pal-ad-server-setup-terraform` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/os-pay-pal-vpc-setup-terraform` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/os-pyutils` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/os-pyutils` | frigga-cloud, instore, osmos-client-delight, osmos-performance | admin, write | [ ] |
 | `onlinesales-ai/os-pyutils-frigga` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/os-terraform` | frigga-cloud | admin | [ ] |
+| `onlinesales-ai/os-svc-client` | osmos-client-delight, osmos-media, osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/os-terraform` | frigga-cloud, infra | admin | [ ] |
 | `onlinesales-ai/os-terraform-vpc` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/osAdsAudienceRedisPusherApp` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osAdsTargetingProcessorApp` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osFacebookClient` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/os-ui-doc` | ui | admin, write | [ ] |
+| `onlinesales-ai/osAdServerConfigs` | infra | admin | [ ] |
+| `onlinesales-ai/osAdsAudienceRedisPusherApp` | frigga-cloud, osmos-client-delight, osmos-media | admin, write | [ ] |
+| `onlinesales-ai/osAdsTargetingProcessorApp` | frigga-cloud, osmos-client-delight, osmos-media | admin, write | [ ] |
+| `onlinesales-ai/osAudienceUpdator` | osmos-client-delight, osmos-media, osmos-offsite, osmos-rms | admin, maintain | [ ] |
+| `onlinesales-ai/osFacebookClient` | frigga-cloud, osmos-offsite | admin, write | [ ] |
+| `onlinesales-ai/osFileStreamProcessorApp` | cw-python, frigga-cloud, osmos-client-delight, osmos-media, osmos-performance, osmos-rms | admin, maintain, write | [ ] |
 | `onlinesales-ai/osGoogleAdsClient` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osmos-advertiser-suggestion-generator` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osmos-icu-tokenizer` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osmos-inference-svc` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osmos-keyword-curator-app` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osPackageLauncher` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osPackageSvc` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/osPackageLauncher` | frigga-cloud, infra, osmos-client-delight, osmos-rms, osmos-rms-ui | admin, maintain, write | [ ] |
+| `onlinesales-ai/osPackageSvc` | frigga-cloud, osmos-client-delight, osmos-media, osmos-rms | admin, maintain, write | [ ] |
+| `onlinesales-ai/osPackageSvcConsumer` | osmos-rms | write | [ ] |
 | `onlinesales-ai/osSchedulesArgoSyncer` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/osSolrLoaderApp` | osmos-client-delight, osmos-media, osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/osSvcClient4pyV2` | cw-python, frigga-cloud, infra, osmos-client-delight, osmos-performance | admin, write | [ ] |
 | `onlinesales-ai/osSvcClient4pyV2-frigga` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/osTiktokAdsClient` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/plaAdServer` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/osTemporalClient` | osmos-offsite | write | [ ] |
+| `onlinesales-ai/osTiktokAdsClient` | frigga-cloud, osmos-offsite | write | [ ] |
+| `onlinesales-ai/osmos-advertiser-suggestion-generator` | frigga-cloud, infra, osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/osmos-api-qa` | osmos-client-delight, osmos-media, osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/osmos-claude-plugins` | instore, osmos-data | write | [ ] |
+| `onlinesales-ai/osmos-data-analysis-agent` | osmos-performance | write | [ ] |
+| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-client-delight, osmos-media, osmos-performance | admin, maintain, write | [ ] |
+| `onlinesales-ai/osmos-events-api-qa` | osmos-media | write | [ ] |
+| `onlinesales-ai/osmos-flutter-sdk` | osmos-client-delight | admin, write | [ ] |
+| `onlinesales-ai/osmos-icu-tokenizer` | frigga-cloud, infra, osmos-client-delight | admin, maintain, write | [ ] |
+| `onlinesales-ai/osmos-iframe-sdk` | osmos-rms-ui, ui | admin, write | [ ] |
+| `onlinesales-ai/osmos-inference-svc` | frigga-cloud, osmos-performance | admin, maintain, write | [ ] |
+| `onlinesales-ai/osmos-keyword-curator-app` | frigga-cloud, infra, osmos-performance | admin, write | [ ] |
+| `onlinesales-ai/osmos-lead-form` | ui | admin, write | [ ] |
+| `onlinesales-ai/osmos-perf-irrelevancy-identification` | osmos-performance | write | [ ] |
+| `onlinesales-ai/osmos-pla-auto-keyword-targeting-bid-optimizer` | osmos-performance | write | [ ] |
+| `onlinesales-ai/osmos-pulse-qa` | ui | write | [ ] |
+| `onlinesales-ai/osmos-react-native-sdk` | ui | admin, write | [ ] |
+| `onlinesales-ai/osmos-react-native-sdk-demo` | osmos-sdk | admin, write | [ ] |
+| `onlinesales-ai/osmos-ui-qa` | osmos-qa, ui | admin, write | [ ] |
+| `onlinesales-ai/osmos-web-sdk` | osmos-client-delight, osmos-sdk, ui | admin, write | [ ] |
+| `onlinesales-ai/osmos-web-sdk-playground` | osmos-sdk, ui | admin, write | [ ] |
+| `onlinesales-ai/ott-ui` | ui | admin, write | [ ] |
+| `onlinesales-ai/paypal-web-internal-sdk` | ui | admin, write | [ ] |
+| `onlinesales-ai/paypal-web-sdk` | ui | admin, write | [ ] |
+| `onlinesales-ai/plaAdServer` | frigga-cloud, infra, osmos-client-delight, osmos-media, osmos-performance | admin, write | [ ] |
 | `onlinesales-ai/plaAdServer-frigga` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/pmaxLauncher` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/propertySettingsSvcV2_frigga` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/publisher-svc` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/placement-automation` | osmos-client-delight, ui | admin, write | [ ] |
+| `onlinesales-ai/pmaxLauncher` | frigga-cloud, hyperlocal, infra, osmos-offsite | admin, write | [ ] |
+| `onlinesales-ai/portfolioBidStrategyUpdater` | hyperlocal, osmos-offsite | admin, maintain | [ ] |
+| `onlinesales-ai/propertySettingsSvcV2_frigga` | frigga-cloud, infra | admin | [ ] |
+| `onlinesales-ai/publisher-svc` | frigga-cloud, infra, osmos-client-delight | admin, write | [ ] |
 | `onlinesales-ai/python-cloud-function-template` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/reportService` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/reportService` | frigga-cloud, osmos-client-delight, osmos-media, osmos-rms | admin, write | [ ] |
 | `onlinesales-ai/reposilite-k8s` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/restAccessor` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/restAccessor4py3` | frigga-cloud | write | [ ] |
 | `onlinesales-ai/restCommunicator` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/restObjects` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/reusable-workflows` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/reviewService` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/retailer-service-api-qa` | osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/reusable-workflows` | frigga-cloud, infra | admin | [ ] |
+| `onlinesales-ai/revXAdServerNodeV2` | frigga-cloud, infra, osmos-client-delight, osmos-media, osmos-performance | admin, write | [ ] |
 | `onlinesales-ai/revXAdServerNodeV2-frigga` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/revxScripts` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/rmhcReporting` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/rmhcTracking` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/reviewService` | frigga-cloud, infra, osmos-client-delight | admin, write | [ ] |
+| `onlinesales-ai/revxScripts` | cw-python, frigga-cloud, osmos-data | admin, write | [ ] |
+| `onlinesales-ai/rmhc` | ui | admin, write | [ ] |
+| `onlinesales-ai/rmhc-ui` | ui | admin, write | [ ] |
+| `onlinesales-ai/rmhcReporting` | frigga-cloud, infra | admin, write | [ ] |
+| `onlinesales-ai/rmhcTracking` | frigga-cloud, infra | admin, write | [ ] |
 | `onlinesales-ai/scheduler-shared-dbaccess` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/schedulerLib4j` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/schedulerService` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/schedulerSvcObjects` | frigga-cloud | admin | [ ] |
+| `onlinesales-ai/shared-ui` | osmos-ui, ui, ui-team | admin, write | [ ] |
+| `onlinesales-ai/smm-ui` | ui | maintain, write | [ ] |
+| `onlinesales-ai/sofie-ai` | osmos-data, ui | write | [ ] |
+| `onlinesales-ai/sofie-finance-agent` | osmos-data, ui | write | [ ] |
+| `onlinesales-ai/sofie-keyword-suggestions-shared-util` | osmos-performance | write | [ ] |
+| `onlinesales-ai/sofie-research-agent` | osmos-data, ui | write | [ ] |
+| `onlinesales-ai/sofie-shared` | osmos-data, ui | write | [ ] |
 | `onlinesales-ai/sokratiCache` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/statsLogger` | frigga-cloud | admin | [ ] |
 | `onlinesales-ai/statsLoggingClient` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/temporalWorkflowTriggerConsumer` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/storeFeedSync` | osmos-client-delight, osmos-media, osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/strapi-hyperlocal` | ui | admin, write | [ ] |
+| `onlinesales-ai/strapi-osmos` | ui | admin, write | [ ] |
+| `onlinesales-ai/suchiService` | hyperlocal | admin, write | [ ] |
+| `onlinesales-ai/temporalWorkflowTriggerConsumer` | frigga-cloud, osmos-offsite | admin, write | [ ] |
+| `onlinesales-ai/test-backend` | osmos-media | admin, write | [ ] |
 | `onlinesales-ai/third_party` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/trackm` | frigga-cloud | write | [ ] |
+| `onlinesales-ai/tiktokLauncher` | osmos-offsite | admin, write | [ ] |
+| `onlinesales-ai/tiktokLauncher-temp` | osmos-offsite, osmso-offsite | write | [ ] |
+| `onlinesales-ai/trackm` | frigga-cloud, osmos-client-delight, osmos-data | admin, write | [ ] |
 | `onlinesales-ai/trackm-terraform` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/UUIDGenerator` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/vendorUploader` | frigga-cloud | write | [ ] |
-| `onlinesales-ai/workload-identity-automation` | frigga-cloud | admin | [ ] |
-| `onlinesales-ai/aresJobGen` | hyperlocal | read | [ ] |
-| `onlinesales-ai/craftService` | hyperlocal | read | [ ] |
-| `onlinesales-ai/hyperlocalCampaignConfidenceScorePopulator` | hyperlocal | read | [ ] |
-| `onlinesales-ai/hyperlocalForecastingModelTrainingFlow` | hyperlocal | read | [ ] |
-| `onlinesales-ai/labs` | hyperlocal | read | [ ] |
-| `onlinesales-ai/lmsCrmSyncApp` | hyperlocal | admin | [ ] |
-| `onlinesales-ai/pmaxLauncher` | hyperlocal | read | [ ] |
-| `onlinesales-ai/portfolioBidStrategyUpdater` | hyperlocal | admin | [ ] |
-| `onlinesales-ai/suchiService` | hyperlocal | read | [ ] |
-| `onlinesales-ai/vendorUploader` | hyperlocal | read | [ ] |
-| `onlinesales-ai/aresJobGen` | hyperlocal-admin | admin | [ ] |
-| `onlinesales-ai/craftService` | hyperlocal-admin | read | [ ] |
-| `onlinesales-ai/hyperlocalCampaignConfidenceScorePopulator` | hyperlocal-admin | read | [ ] |
-| `onlinesales-ai/hyperlocalForecastingModelTrainingFlow` | hyperlocal-admin | read | [ ] |
-| `onlinesales-ai/labs` | hyperlocal-admin | admin | [ ] |
-| `onlinesales-ai/lmsCrmSyncApp` | hyperlocal-admin | admin | [ ] |
-| `onlinesales-ai/localium-catalog-svc` | hyperlocal-admin | admin | [ ] |
-| `onlinesales-ai/onboardingScripts` | hyperlocal-admin | admin | [ ] |
-| `onlinesales-ai/pmaxLauncher` | hyperlocal-admin | admin | [ ] |
-| `onlinesales-ai/portfolioBidStrategyUpdater` | hyperlocal-admin | admin | [ ] |
-| `onlinesales-ai/suchiService` | hyperlocal-admin | admin | [ ] |
-| `onlinesales-ai/vendorUploader` | hyperlocal-admin | read | [ ] |
-| `onlinesales-ai/aresJobGen` | hyperlocal-performance | read | [ ] |
-| `onlinesales-ai/localium-DA-workspace` | hyperlocal-performance | write | [ ] |
-| `onlinesales-ai/aresJobGen` | hyperlocal-performance-da | read | [ ] |
-| `onlinesales-ai/localium-DA-Meta-workspace` | hyperlocal-performance-da | write | [ ] |
-| `onlinesales-ai/localium-DA-workspace` | hyperlocal-performance-da | write | [ ] |
-| `onlinesales-ai/aresJobGen` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/butlerService` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/craftService` | hyperlocal-write | read | [ ] |
-| `onlinesales-ai/flairminds` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/hyperlocalCampaignConfidenceScorePopulator` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/hyperlocalForecastingModelTrainingFlow` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/kamService` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/labs` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/lmsCrmSyncApp` | hyperlocal-write | admin | [ ] |
-| `onlinesales-ai/lmsNodeEventManagerConsumer` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/localium-catalog-svc` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/onboardingScripts` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/pmaxLauncher` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/portfolioBidStrategyUpdater` | hyperlocal-write | admin | [ ] |
-| `onlinesales-ai/suchiService` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/vendorUploader` | hyperlocal-write | write | [ ] |
-| `onlinesales-ai/auth0Automation` | infra | read | [ ] |
-| `onlinesales-ai/engageService` | infra | read | [ ] |
-| `onlinesales-ai/gitops` | infra | read | [ ] |
-| `onlinesales-ai/hadesV2` | infra | read | [ ] |
-| `onlinesales-ai/osmos-keyword-curator-app` | infra | admin | [ ] |
-| `onlinesales-ai/ArgoCD-Prod` | infra-admin | admin | [ ] |
-| `onlinesales-ai/ArgoCD-Stage` | infra-admin | admin | [ ] |
-| `onlinesales-ai/asyncJobsService` | infra-admin | admin | [ ] |
-| `onlinesales-ai/athenaJobsV4BQ` | infra-admin | admin | [ ] |
-| `onlinesales-ai/auth0Automation` | infra-admin | read | [ ] |
-| `onlinesales-ai/brandAdServerV2` | infra-admin | admin | [ ] |
-| `onlinesales-ai/brandAdsUIService` | infra-admin | admin | [ ] |
-| `onlinesales-ai/butlerService` | infra-admin | admin | [ ] |
-| `onlinesales-ai/craftService` | infra-admin | admin | [ ] |
-| `onlinesales-ai/engageService` | infra-admin | admin | [ ] |
-| `onlinesales-ai/frigga-testing-daemon` | infra-admin | maintain | [ ] |
-| `onlinesales-ai/gcp-alerts-terraform` | infra-admin | admin | [ ] |
-| `onlinesales-ai/gcp-infra` | infra-admin | admin | [ ] |
-| `onlinesales-ai/gitops` | infra-admin | admin | [ ] |
-| `onlinesales-ai/hadesV2` | infra-admin | read | [ ] |
-| `onlinesales-ai/instore-cms-client` | infra-admin | admin | [ ] |
-| `onlinesales-ai/instoreSchedulingConsumer` | infra-admin | admin | [ ] |
-| `onlinesales-ai/instoreScripts` | infra-admin | admin | [ ] |
-| `onlinesales-ai/instoreService` | infra-admin | admin | [ ] |
-| `onlinesales-ai/java-shared-lib-template` | infra-admin | maintain | [ ] |
-| `onlinesales-ai/lmsNodeEventManagerConsumer` | infra-admin | admin | [ ] |
-| `onlinesales-ai/logger_frigga` | infra-admin | admin | [ ] |
-| `onlinesales-ai/multiVerseService` | infra-admin | admin | [ ] |
-| `onlinesales-ai/onboardingScripts` | infra-admin | admin | [ ] |
-| `onlinesales-ai/os-adserver-util` | infra-admin | admin | [ ] |
-| `onlinesales-ai/OS-Debezium` | infra-admin | admin | [ ] |
-| `onlinesales-ai/os-terraform` | infra-admin | admin | [ ] |
-| `onlinesales-ai/osAdServerConfigs` | infra-admin | admin | [ ] |
-| `onlinesales-ai/osmos-advertiser-suggestion-generator` | infra-admin | admin | [ ] |
-| `onlinesales-ai/osmos-icu-tokenizer` | infra-admin | admin | [ ] |
-| `onlinesales-ai/osmos-keyword-curator-app` | infra-admin | admin | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | infra-admin | admin | [ ] |
-| `onlinesales-ai/plaAdServer` | infra-admin | admin | [ ] |
-| `onlinesales-ai/pmaxLauncher` | infra-admin | admin | [ ] |
-| `onlinesales-ai/propertySettingsSvcV2_frigga` | infra-admin | admin | [ ] |
-| `onlinesales-ai/publisher-svc` | infra-admin | admin | [ ] |
-| `onlinesales-ai/reusable-workflows` | infra-admin | admin | [ ] |
-| `onlinesales-ai/reviewService` | infra-admin | admin | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | infra-admin | admin | [ ] |
-| `onlinesales-ai/rmhcReporting` | infra-admin | admin | [ ] |
-| `onlinesales-ai/rmhcTracking` | infra-admin | admin | [ ] |
-| `onlinesales-ai/adServer-frigga` | infra-write | maintain | [ ] |
-| `onlinesales-ai/auth0Automation` | infra-write | read | [ ] |
-| `onlinesales-ai/engageService` | infra-write | read | [ ] |
-| `onlinesales-ai/gitops` | infra-write | write | [ ] |
-| `onlinesales-ai/hadesV2` | infra-write | read | [ ] |
-| `onlinesales-ai/instoreRedisLoader` | infra-write | write | [ ] |
-| `onlinesales-ai/osmos-keyword-curator-app` | infra-write | admin | [ ] |
-| `onlinesales-ai/osPackageLauncher` | infra-write | maintain | [ ] |
-| `onlinesales-ai/publisher-svc` | infra-write | write | [ ] |
-| `onlinesales-ai/in-store-screen-registration-API` | instore | write | [ ] |
-| `onlinesales-ai/instore-cms-client` | instore | read | [ ] |
-| `onlinesales-ai/instoreAdServer` | instore | read | [ ] |
-| `onlinesales-ai/instoreCampaignBookingProcessor` | instore | read | [ ] |
-| `onlinesales-ai/instoreCMSSync` | instore | read | [ ] |
-| `onlinesales-ai/instoreConsumer` | instore | read | [ ] |
-| `onlinesales-ai/InstoreDigitalScreenStatusSync` | instore | read | [ ] |
-| `onlinesales-ai/instoreRedisLoader` | instore | read | [ ] |
-| `onlinesales-ai/instoreSchedulingConsumer` | instore | read | [ ] |
-| `onlinesales-ai/instoreScripts` | instore | read | [ ] |
-| `onlinesales-ai/instoreService` | instore | read | [ ] |
-| `onlinesales-ai/instoreTranscoder` | instore | read | [ ] |
-| `onlinesales-ai/kuberService` | instore | read | [ ] |
-| `onlinesales-ai/multiVerseService` | instore | read | [ ] |
-| `onlinesales-ai/in-store-screen-registration-API` | instore-admin | write | [ ] |
-| `onlinesales-ai/instore-cms-client` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreAdServer` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreAlerting` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreCampaignBookingProcessor` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreCMSSync` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreConsumer` | instore-admin | admin | [ ] |
-| `onlinesales-ai/InstoreDigitalScreenStatusSync` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreRedisLoader` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreSchedulingConsumer` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreScripts` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreService` | instore-admin | admin | [ ] |
-| `onlinesales-ai/instoreTranscoder` | instore-admin | admin | [ ] |
-| `onlinesales-ai/kuberService` | instore-admin | read | [ ] |
-| `onlinesales-ai/multiVerseService` | instore-admin | read | [ ] |
-| `onlinesales-ai/onboardingScripts` | instore-admin | admin | [ ] |
-| `onlinesales-ai/in-store-screen-registration-API` | instore-write | write | [ ] |
-| `onlinesales-ai/instore-cms-client` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreAdServer` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreAlerting` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreCampaignBookingProcessor` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreCMSSync` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreConsumer` | instore-write | write | [ ] |
-| `onlinesales-ai/InstoreDigitalScreenStatusSync` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreRedisLoader` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreSchedulingConsumer` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreScripts` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreService` | instore-write | write | [ ] |
-| `onlinesales-ai/instoreTranscoder` | instore-write | write | [ ] |
-| `onlinesales-ai/kamService` | instore-write | write | [ ] |
-| `onlinesales-ai/kuberService` | instore-write | read | [ ] |
-| `onlinesales-ai/multiVerseService` | instore-write | read | [ ] |
-| `onlinesales-ai/navigatorService` | instore-write | write | [ ] |
-| `onlinesales-ai/os-bullmq-client` | instore-write | write | [ ] |
-| `onlinesales-ai/os-pyutils` | instore-write | write | [ ] |
-| `onlinesales-ai/osmos-claude-plugins` | instore-write | write | [ ] |
-| `onlinesales-ai/adrequest-debugger` | osmos-client-delight | write | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/android-os-sdk` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/auditService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/brandAdServerV2` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/brandAdsUIService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/butlerService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/demo-mobile-apps` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/fileBasedAudienceSync` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/financeService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/financeServiceConsumer_deprecated` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/flutter-os-sdk` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/flutter-osmos-sdk-source` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/iab-url-verification` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/ios-os-sdk` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/kamService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/keywordTargetingService-api-qa` | osmos-client-delight | write | [ ] |
-| `onlinesales-ai/kuberService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/marketingService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/mediaRubyScripts` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/offerService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-client-delight | write | [ ] |
-| `onlinesales-ai/osAdsAudienceRedisPusherApp` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/osAdsTargetingProcessorApp` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-client-delight | write | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-client-delight | maintain | [ ] |
-| `onlinesales-ai/osmos-flutter-sdk` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/osmos-web-sdk` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/osPackageLauncher` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/osPackageSvc` | osmos-client-delight | maintain | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/plaAdServer` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/placement-automation` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/pmaxLauncher` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/reportService` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | osmos-client-delight | read | [ ] |
-| `onlinesales-ai/trackm` | osmos-client-delight | read | [ ] |
+| `onlinesales-ai/trackmConfigs` | osmos-data | write | [ ] |
+| `onlinesales-ai/ubidEmailPusher` | osmos-client-delight, osmos-media | admin, write | [ ] |
+| `onlinesales-ai/ui-app-boilerplate` | ui | admin, write | [ ] |
+| `onlinesales-ai/ui-domain-configs` | ui | admin | [ ] |
+| `onlinesales-ai/ui-localium-domain-configs` | ui | admin | [ ] |
+| `onlinesales-ai/ui-onboarding` | ui | admin, write | [ ] |
+| `onlinesales-ai/ui-tools` | ui | admin, write | [ ] |
+| `onlinesales-ai/uploader-ui` | osmos-rms | admin, write | [ ] |
+| `onlinesales-ai/user-tagging-api-qa` | osmos-rms | write | [ ] |
+| `onlinesales-ai/vendorUploader` | frigga-cloud, hyperlocal, osmos-offsite | admin, write | [ ] |
+| `onlinesales-ai/web-osmos-sdk-source` | osmos-sdk | admin, write | [ ] |
 | `onlinesales-ai/workflowEngine` | osmos-client-delight | maintain | [ ] |
-| `onlinesales-ai/adrequest-debugger` | osmos-client-delight-admin | write | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-client-delight-admin | read | [ ] |
-| `onlinesales-ai/AdServerESOConfiguration` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/android-os-sdk` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/ArgoCD-Stage` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/auditService` | osmos-client-delight-admin | read | [ ] |
-| `onlinesales-ai/brandAdServerV2` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/brandAdsUIService` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/butlerService` | osmos-client-delight-admin | read | [ ] |
-| `onlinesales-ai/catalogSyncService` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/demo-mobile-apps` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/fileBasedAudienceSync` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/financeService` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/financeServiceConsumer_deprecated` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/flutter-ecommerce-demo-app` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/flutter-os-sdk` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/flutter-osmos-sdk-source` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/iab-url-verification` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/ios-os-sdk` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/kamService` | osmos-client-delight-admin | read | [ ] |
-| `onlinesales-ai/keywordTargetingService-api-qa` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/kuberService` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/marketingService` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-client-delight-admin | read | [ ] |
-| `onlinesales-ai/mediaRubyScripts` | osmos-client-delight-admin | read | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-client-delight-admin | read | [ ] |
-| `onlinesales-ai/offerService` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/os-common-middlewares` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/os-gcp-client` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/os-moloco-client` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/os-pyutils` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/os-svc-client` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osAdsAudienceRedisPusherApp` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osAdsTargetingProcessorApp` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osmos-flutter-sdk` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osmos-web-sdk` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osPackageLauncher` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osPackageSvc` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/plaAdServer` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/placement-automation` | osmos-client-delight-admin | read | [ ] |
-| `onlinesales-ai/pmaxLauncher` | osmos-client-delight-admin | read | [ ] |
-| `onlinesales-ai/reportService` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/reviewService` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/storeFeedSync` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/trackm` | osmos-client-delight-admin | admin | [ ] |
-| `onlinesales-ai/workflowEngine` | osmos-client-delight-admin | maintain | [ ] |
-| `onlinesales-ai/adrequest-debugger` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-client-delight-write | read | [ ] |
-| `onlinesales-ai/android-os-sdk` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/android-osmos-sdk-source` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/ArgoCD-Prod` | osmos-client-delight-write | read | [ ] |
-| `onlinesales-ai/auditService` | osmos-client-delight-write | read | [ ] |
-| `onlinesales-ai/brandAdServerV2` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/brandAdsUIService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/butlerService` | osmos-client-delight-write | read | [ ] |
-| `onlinesales-ai/campaignUserActionConsumer` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/catalogSyncService` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/creativeUploadService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/demo-mobile-apps` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/fileBasedAudienceSync` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/financeService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/financeServiceConsumer_deprecated` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/flutter-os-sdk` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/flutter-osmos-sdk-source` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/iab-url-verification` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/ios-os-sdk` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/ios-osmos-sdk-source` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/kamService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/keywordTargetingService-api-qa` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/kuberService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/localium-catalog-svc` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/marketingService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/mediaRubyScripts` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/offerService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/os-common-middlewares` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/os-gcp-client` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/os-svc-client` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/osAdsAudienceRedisPusherApp` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/osAdsTargetingProcessorApp` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/osmos-flutter-sdk` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/osmos-icu-tokenizer` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/osmos-web-sdk` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/osPackageLauncher` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/osPackageSvc` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/plaAdServer` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/placement-automation` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/pmaxLauncher` | osmos-client-delight-write | read | [ ] |
-| `onlinesales-ai/publisher-svc` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/reportService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/reviewService` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/storeFeedSync` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/trackm` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/ubidEmailPusher` | osmos-client-delight-write | write | [ ] |
-| `onlinesales-ai/workflowEngine` | osmos-client-delight-write | maintain | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-data | read | [ ] |
-| `onlinesales-ai/butlerService` | osmos-data | read | [ ] |
-| `onlinesales-ai/campaign_debugger_agent` | osmos-data | write | [ ] |
-| `onlinesales-ai/dataValidationExecutorV2` | osmos-data | read | [ ] |
-| `onlinesales-ai/instoreAdServer` | osmos-data | read | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-data | read | [ ] |
-| `onlinesales-ai/revxScripts` | osmos-data | read | [ ] |
-| `onlinesales-ai/trackm` | osmos-data | read | [ ] |
-| `onlinesales-ai/trackmConfigs` | osmos-data | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-data-admin | admin | [ ] |
-| `onlinesales-ai/butlerService` | osmos-data-admin | read | [ ] |
-| `onlinesales-ai/campaign_debugger_agent` | osmos-data-admin | write | [ ] |
-| `onlinesales-ai/dataValidationExecutorV2` | osmos-data-admin | admin | [ ] |
-| `onlinesales-ai/instoreAdServer` | osmos-data-admin | read | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-data-admin | admin | [ ] |
-| `onlinesales-ai/revxScripts` | osmos-data-admin | admin | [ ] |
-| `onlinesales-ai/trackm` | osmos-data-admin | admin | [ ] |
-| `onlinesales-ai/trackmConfigs` | osmos-data-admin | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-data-contractual | write | [ ] |
-| `onlinesales-ai/dataValidationExecutorV2` | osmos-data-contractual | write | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/butlerService` | osmos-data-write | read | [ ] |
-| `onlinesales-ai/campaign_debugger_agent` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/dataValidationExecutorV2` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/instoreAdServer` | osmos-data-write | read | [ ] |
-| `onlinesales-ai/kamService` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/osmos-claude-plugins` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/revxScripts` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/sofie-ai` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/sofie-finance-agent` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/sofie-research-agent` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/sofie-shared` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/trackm` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/trackmConfigs` | osmos-data-write | write | [ ] |
-| `onlinesales-ai/ad-server-test` | osmos-media | read | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-media | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-media | read | [ ] |
-| `onlinesales-ai/brandAdServerV2` | osmos-media | read | [ ] |
-| `onlinesales-ai/campaignCloner` | osmos-media | maintain | [ ] |
-| `onlinesales-ai/campaign_debugger_agent` | osmos-media | write | [ ] |
-| `onlinesales-ai/engageService` | osmos-media | read | [ ] |
-| `onlinesales-ai/engageServiceConsumer` | osmos-media | read | [ ] |
-| `onlinesales-ai/financeService` | osmos-media | read | [ ] |
-| `onlinesales-ai/kuberService` | osmos-media | read | [ ] |
-| `onlinesales-ai/marketingService` | osmos-media | read | [ ] |
-| `onlinesales-ai/marketingServiceConsumer` | osmos-media | read | [ ] |
-| `onlinesales-ai/marketplaceBillingApplication` | osmos-media | read | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-media | read | [ ] |
-| `onlinesales-ai/mediaRubyScripts` | osmos-media | read | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-media | read | [ ] |
-| `onlinesales-ai/osAdsAudienceRedisPusherApp` | osmos-media | write | [ ] |
-| `onlinesales-ai/osAdsTargetingProcessorApp` | osmos-media | write | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-media | read | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-media | read | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-media | read | [ ] |
-| `onlinesales-ai/osmos-events-api-qa` | osmos-media | read | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-media | read | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | osmos-media | read | [ ] |
-| `onlinesales-ai/plaAdServer` | osmos-media | read | [ ] |
-| `onlinesales-ai/reportService` | osmos-media | read | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | osmos-media | read | [ ] |
-| `onlinesales-ai/test-backend` | osmos-media | read | [ ] |
-| `onlinesales-ai/ubidEmailPusher` | osmos-media | read | [ ] |
-| `onlinesales-ai/ad-server-test` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-media-admin | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/brandAdServerV2` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/campaignCloner` | osmos-media-admin | maintain | [ ] |
-| `onlinesales-ai/campaignUserActionConsumer` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/campaign_debugger_agent` | osmos-media-admin | write | [ ] |
-| `onlinesales-ai/engageService` | osmos-media-admin | read | [ ] |
-| `onlinesales-ai/engageServiceConsumer` | osmos-media-admin | read | [ ] |
-| `onlinesales-ai/financeService` | osmos-media-admin | read | [ ] |
-| `onlinesales-ai/kuberService` | osmos-media-admin | read | [ ] |
-| `onlinesales-ai/marketingService` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/marketingServiceConsumer` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/marketplaceBillingApplication` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/mediaRubyScripts` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-media-admin | read | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/osAdsAudienceRedisPusherApp` | osmos-media-admin | write | [ ] |
-| `onlinesales-ai/osAdsTargetingProcessorApp` | osmos-media-admin | write | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/osmos-events-api-qa` | osmos-media-admin | read | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | osmos-media-admin | read | [ ] |
-| `onlinesales-ai/plaAdServer` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/reportService` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/test-backend` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/ubidEmailPusher` | osmos-media-admin | admin | [ ] |
-| `onlinesales-ai/ad-server-test` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-media-write | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/beamEventProcessor` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/brandAdServerV2` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/campaignCloner` | osmos-media-write | maintain | [ ] |
-| `onlinesales-ai/campaignUserActionConsumer` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/campaign_debugger_agent` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/engageService` | osmos-media-write | read | [ ] |
-| `onlinesales-ai/engageServiceConsumer` | osmos-media-write | read | [ ] |
-| `onlinesales-ai/financeService` | osmos-media-write | read | [ ] |
-| `onlinesales-ai/kuberService` | osmos-media-write | read | [ ] |
-| `onlinesales-ai/marketingService` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/marketingServiceConsumer` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/marketplaceBillingApplication` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-media-write | maintain | [ ] |
-| `onlinesales-ai/mediaRubyScripts` | osmos-media-write | maintain | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-media-write | read | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/os-svc-client` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/osAdsAudienceRedisPusherApp` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/osAdsTargetingProcessorApp` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-media-write | maintain | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-media-write | maintain | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/osmos-events-api-qa` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/osPackageSvc` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | osmos-media-write | read | [ ] |
-| `onlinesales-ai/plaAdServer` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/reportService` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/storeFeedSync` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/test-backend` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/ubidEmailPusher` | osmos-media-write | write | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-offsite-admin | admin | [ ] |
-| `onlinesales-ai/budgetEngine` | osmos-offsite-admin | admin | [ ] |
-| `onlinesales-ai/financeService` | osmos-offsite-admin | read | [ ] |
-| `onlinesales-ai/launcherSharedLib` | osmos-offsite-admin | write | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-offsite-admin | admin | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-offsite-admin | admin | [ ] |
-| `onlinesales-ai/osFacebookClient` | osmos-offsite-admin | admin | [ ] |
-| `onlinesales-ai/pmaxLauncher` | osmos-offsite-admin | admin | [ ] |
-| `onlinesales-ai/temporalWorkflowTriggerConsumer` | osmos-offsite-admin | admin | [ ] |
-| `onlinesales-ai/tiktokLauncher` | osmos-offsite-admin | admin | [ ] |
-| `onlinesales-ai/tiktokLauncher-temp` | osmos-offsite-admin | write | [ ] |
-| `onlinesales-ai/vendorUploader` | osmos-offsite-admin | admin | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/craftService` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/financeService` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/launcherSharedLib` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/offsiteReportProject` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-offsite-write | maintain | [ ] |
-| `onlinesales-ai/osFacebookClient` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/osTemporalClient` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/osTiktokAdsClient` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/pmaxLauncher` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/portfolioBidStrategyUpdater` | osmos-offsite-write | maintain | [ ] |
-| `onlinesales-ai/temporalWorkflowTriggerConsumer` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/tiktokLauncher` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/tiktokLauncher-temp` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/vendorUploader` | osmos-offsite-write | write | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-performance | write | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-performance | read | [ ] |
-| `onlinesales-ai/auditService` | osmos-performance | read | [ ] |
-| `onlinesales-ai/brandAdServerV2` | osmos-performance | read | [ ] |
-| `onlinesales-ai/butlerService` | osmos-performance | write | [ ] |
-| `onlinesales-ai/ds-opc-classification-prediction` | osmos-performance | write | [ ] |
-| `onlinesales-ai/ds-opc-classification-training` | osmos-performance | write | [ ] |
-| `onlinesales-ai/ds-search-relevancy-repo` | osmos-performance | read | [ ] |
-| `onlinesales-ai/ds-sku-sku-relevancy-prediction` | osmos-performance | write | [ ] |
-| `onlinesales-ai/ds-sku-sku-relevancy-training` | osmos-performance | write | [ ] |
-| `onlinesales-ai/ds-sku-sku-relevancy-v3` | osmos-performance | read | [ ] |
-| `onlinesales-ai/experimentalCacheScripts` | osmos-performance | maintain | [ ] |
-| `onlinesales-ai/financeService` | osmos-performance | read | [ ] |
-| `onlinesales-ai/kamService` | osmos-performance | read | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-performance | write | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-performance | write | [ ] |
-| `onlinesales-ai/os-pyutils` | osmos-performance | read | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-performance | read | [ ] |
-| `onlinesales-ai/osmos-advertiser-suggestion-generator` | osmos-performance | write | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-performance | write | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-performance | write | [ ] |
-| `onlinesales-ai/osmos-inference-svc` | osmos-performance | maintain | [ ] |
-| `onlinesales-ai/osmos-keyword-curator-app` | osmos-performance | write | [ ] |
-| `onlinesales-ai/osmos-perf-irrelevancy-identification` | osmos-performance | write | [ ] |
-| `onlinesales-ai/osmos-pla-auto-keyword-targeting-bid-optimizer` | osmos-performance | write | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-performance | read | [ ] |
-| `onlinesales-ai/plaAdServer` | osmos-performance | read | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | osmos-performance | read | [ ] |
-| `onlinesales-ai/sofie-keyword-suggestions-shared-util` | osmos-performance | write | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-performance-admin | write | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/auditService` | osmos-performance-admin | read | [ ] |
-| `onlinesales-ai/brandAdServerV2` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/butlerService` | osmos-performance-admin | write | [ ] |
-| `onlinesales-ai/ds-opc-classification-prediction` | osmos-performance-admin | write | [ ] |
-| `onlinesales-ai/ds-opc-classification-training` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/ds-search-relevancy-repo` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/ds-sku-sku-relevancy-prediction` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/ds-sku-sku-relevancy-training` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/ds-sku-sku-relevancy-v3` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/experimentalCacheScripts` | osmos-performance-admin | maintain | [ ] |
-| `onlinesales-ai/financeService` | osmos-performance-admin | read | [ ] |
-| `onlinesales-ai/kamService` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-performance-admin | write | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/os-pyutils` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/osmos-advertiser-suggestion-generator` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/osmos-inference-svc` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/osmos-keyword-curator-app` | osmos-performance-admin | write | [ ] |
-| `onlinesales-ai/osmos-perf-irrelevancy-identification` | osmos-performance-admin | write | [ ] |
-| `onlinesales-ai/osmos-pla-auto-keyword-targeting-bid-optimizer` | osmos-performance-admin | write | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/plaAdServer` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | osmos-performance-admin | admin | [ ] |
-| `onlinesales-ai/sofie-keyword-suggestions-shared-util` | osmos-performance-admin | write | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/asyncJobsService` | osmos-performance-write | maintain | [ ] |
-| `onlinesales-ai/auditService` | osmos-performance-write | read | [ ] |
-| `onlinesales-ai/brandAdServerV2` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/butlerService` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/ds-opc-classification-prediction` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/ds-opc-classification-training` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/ds-search-relevancy-repo` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/ds-sku-sku-relevancy-prediction` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/ds-sku-sku-relevancy-training` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/ds-sku-sku-relevancy-v3` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/experimentalCacheScripts` | osmos-performance-write | maintain | [ ] |
-| `onlinesales-ai/financeService` | osmos-performance-write | read | [ ] |
-| `onlinesales-ai/kamService` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/os-pyutils` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/os-svc-client` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-performance-write | maintain | [ ] |
-| `onlinesales-ai/osmos-advertiser-suggestion-generator` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osmos-data-analysis-agent` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osmos-inference-svc` | osmos-performance-write | maintain | [ ] |
-| `onlinesales-ai/osmos-keyword-curator-app` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osmos-perf-irrelevancy-identification` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osmos-pla-auto-keyword-targeting-bid-optimizer` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osSvcClient4pyV2` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/plaAdServer` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/revXAdServerNodeV2` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/sofie-keyword-suggestions-shared-util` | osmos-performance-write | write | [ ] |
-| `onlinesales-ai/osmos-ui-qa` | osmos-qa | read | [ ] |
-| `onlinesales-ai/osmos-ui-qa` | osmos-qa-admin | admin | [ ] |
-| `onlinesales-ai/osmos-ui-qa` | osmos-qa-write | write | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-rms | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-rms | write | [ ] |
-| `onlinesales-ai/auditConsumer` | osmos-rms | read | [ ] |
-| `onlinesales-ai/auditService` | osmos-rms | triage | [ ] |
-| `onlinesales-ai/brand-ads-ui-service-api-qa` | osmos-rms | read | [ ] |
-| `onlinesales-ai/butlerService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/catalogSyncService` | osmos-rms | write | [ ] |
-| `onlinesales-ai/cis-ui` | osmos-rms | read | [ ] |
-| `onlinesales-ai/documentation` | osmos-rms | read | [ ] |
-| `onlinesales-ai/engageService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/engageService-api-qa` | osmos-rms | read | [ ] |
-| `onlinesales-ai/engageServiceConsumer` | osmos-rms | read | [ ] |
-| `onlinesales-ai/financeService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/financeServiceConsumer_deprecated` | osmos-rms | read | [ ] |
-| `onlinesales-ai/instoreService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/kam-service-api-qa` | osmos-rms | read | [ ] |
-| `onlinesales-ai/kamService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/kuberService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/marketingService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/multiVerseService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/novuWorkflows` | osmos-rms | read | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-rms | write | [ ] |
-| `onlinesales-ai/os-client-tracker` | osmos-rms | read | [ ] |
-| `onlinesales-ai/os-cms` | osmos-rms | read | [ ] |
-| `onlinesales-ai/OS-Debezium` | osmos-rms | read | [ ] |
-| `onlinesales-ai/os-pyutils` | osmos-rms | read | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-rms | read | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-rms | read | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-rms | read | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-rms | read | [ ] |
-| `onlinesales-ai/osmos-inference-svc` | osmos-rms | read | [ ] |
-| `onlinesales-ai/osPackageLauncher` | osmos-rms | write | [ ] |
-| `onlinesales-ai/osPackageSvc` | osmos-rms | read | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-rms | read | [ ] |
-| `onlinesales-ai/reportService` | osmos-rms | read | [ ] |
-| `onlinesales-ai/revxScripts` | osmos-rms | read | [ ] |
-| `onlinesales-ai/storeFeedSync` | osmos-rms | read | [ ] |
-| `onlinesales-ai/uploader-ui` | osmos-rms | read | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/audit-service-api-qa` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/auditConsumer` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/auditService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/brand-ads-ui-service-api-qa` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/butlerService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/catalogSyncService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/cis-ui` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/documentation` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/engageService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/engageService-api-qa` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/engageServiceConsumer` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/financeService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/financeServiceConsumer_deprecated` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/instoreService` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/kam-service-api-qa` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/kamService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/keywordTargetingService-api-qa` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/kuberService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/marketingService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/multiVerseService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/novuWorkflows` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/os-client-tracker` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/os-cms` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/OS-Debezium` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/os-pyutils` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/osmos-inference-svc` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/osPackageLauncher` | osmos-rms-admin | write | [ ] |
-| `onlinesales-ai/osPackageSvc` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/reportService` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/retailer-service-api-qa` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/revxScripts` | osmos-rms-admin | read | [ ] |
-| `onlinesales-ai/storeFeedSync` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/uploader-ui` | osmos-rms-admin | admin | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/asyncJobsService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/auditService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/butlerService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/catalogSyncService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/engageService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/financeService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/kamService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/kuberService` | osmos-rms-interns | read | [ ] |
-| `onlinesales-ai/marketingService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/offerService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/osPackageLauncher` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/osPackageSvc` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/osPackageSvcConsumer` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/reportService` | osmos-rms-interns | write | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-rms-ui-write | write | [ ] |
-| `onlinesales-ai/auditConsumer` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/auditService` | osmos-rms-ui-write | triage | [ ] |
-| `onlinesales-ai/brand-ads-ui-service-api-qa` | osmos-rms-ui-write | write | [ ] |
-| `onlinesales-ai/butlerService` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/catalogSyncService` | osmos-rms-ui-write | write | [ ] |
-| `onlinesales-ai/cis-ui` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/documentation` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/engageService` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/engageService-api-qa` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/engageServiceConsumer` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/financeService` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/financeServiceConsumer_deprecated` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/instoreService` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/kam-service-api-qa` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/kamService` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/kuberService` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/marketingService` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/multiVerseService` | osmos-rms-ui-write | write | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/novuWorkflows` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-rms-ui-write | write | [ ] |
-| `onlinesales-ai/os-client-tracker` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/os-cms` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/OS-Debezium` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/os-pyutils` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/osmos-iframe-sdk` | osmos-rms-ui-write | write | [ ] |
-| `onlinesales-ai/osmos-inference-svc` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/osPackageLauncher` | osmos-rms-ui-write | write | [ ] |
-| `onlinesales-ai/osPackageSvc` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/reportService` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/revxScripts` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/storeFeedSync` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/uploader-ui` | osmos-rms-ui-write | read | [ ] |
-| `onlinesales-ai/adserver-deployment-monitoring` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/aresJobGen` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/asyncJobsService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/audience-segment-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/audit-service-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/auditConsumer` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/auditService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/brand-ads-ui-service-api-qa` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/butlerService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/catalogSyncService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/cis-ui` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/comment-service-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/documentation` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/engageService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/engageService-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/engageServiceConsumer` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/financeService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/financeServiceConsumer_deprecated` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/flairminds` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/instoreService` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/kam-service-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/kamService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/keywordTargetingService-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/kuber-service-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/kuberService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/marketing-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/marketingService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/mediaPythonScripts` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/multiVerseService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/navigatorService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/novuWorkflows` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/offerService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/onboarding-service-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/onboardingScripts` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/os-bullmq` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/os-client-tracker` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/os-cms` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/OS-Debezium` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/os-pyutils` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/osAudienceUpdator` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/osFileStreamProcessorApp` | osmos-rms-write | maintain | [ ] |
-| `onlinesales-ai/osmos-api-qa` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/osmos-display-adserver-api-qa` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/osmos-inference-svc` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/osPackageLauncher` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/osPackageSvc` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/osPackageSvcConsumer` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/osSolrLoaderApp` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/reportService` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/retailer-service-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/revxScripts` | osmos-rms-write | read | [ ] |
-| `onlinesales-ai/storeFeedSync` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/uploader-ui` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/user-tagging-api-qa` | osmos-rms-write | write | [ ] |
-| `onlinesales-ai/android-os-sdk` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/android-osmos-sdk-source` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/demo-mobile-apps` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/flutter-os-sdk` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/flutter-osmos-sdk-source` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/ios-os-sdk` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/ios-osmos-sdk-source` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/osmos-react-native-sdk-demo` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/osmos-web-sdk` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/osmos-web-sdk-playground` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/web-osmos-sdk-source` | osmos-sdk | read | [ ] |
-| `onlinesales-ai/android-os-sdk` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/android-osmos-sdk-source` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/demo-mobile-apps` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/flutter-os-sdk` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/flutter-osmos-sdk-source` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/ios-os-sdk` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/ios-osmos-sdk-source` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/osmos-react-native-sdk-demo` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/osmos-web-sdk` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/osmos-web-sdk-playground` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/web-osmos-sdk-source` | osmos-sdk-admin | admin | [ ] |
-| `onlinesales-ai/android-os-sdk` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/android-osmos-sdk-source` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/demo-mobile-apps` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/flutter-os-sdk` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/flutter-osmos-sdk-source` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/ios-os-sdk` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/ios-osmos-sdk-source` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/osmos-react-native-sdk-demo` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/osmos-web-sdk` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/osmos-web-sdk-playground` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/web-osmos-sdk-source` | osmos-sdk-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-maverick-ui` | osmos-ui-external-contractors | read | [ ] |
-| `onlinesales-ai/hyperlocal-pulse-ui` | osmos-ui-external-contractors | read | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui` | osmos-ui-external-contractors | read | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui-v2` | osmos-ui-external-contractors | read | [ ] |
-| `onlinesales-ai/shared-ui` | osmos-ui-external-contractors | read | [ ] |
-| `onlinesales-ai/hyperlocal-maverick-ui` | osmos-ui-external-contractors-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-pulse-ui` | osmos-ui-external-contractors-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui` | osmos-ui-external-contractors-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui-v2` | osmos-ui-external-contractors-write | write | [ ] |
-| `onlinesales-ai/shared-ui` | osmos-ui-external-contractors-write | write | [ ] |
-| `onlinesales-ai/financeService` | osmso-offsite | read | [ ] |
-| `onlinesales-ai/launcherSharedLib` | osmso-offsite | write | [ ] |
-| `onlinesales-ai/osFacebookClient` | osmso-offsite | read | [ ] |
-| `onlinesales-ai/pmaxLauncher` | osmso-offsite | read | [ ] |
-| `onlinesales-ai/tiktokLauncher` | osmso-offsite | read | [ ] |
-| `onlinesales-ai/tiktokLauncher-temp` | osmso-offsite | write | [ ] |
-| `onlinesales-ai/vendorUploader` | osmso-offsite | read | [ ] |
-| `onlinesales-ai/osmos-claude-plugins` | product-team | write | [ ] |
-| `onlinesales-ai/product-scripts` | product-team | write | [ ] |
-| `onlinesales-ai/v0-in-store-screen-registration-v2` | product-team | write | [ ] |
-| `onlinesales-ai/auditService` | retailium | read | [ ] |
-| `onlinesales-ai/auditService` | retailium-admin | read | [ ] |
-| `onlinesales-ai/auditService` | retailium-write | read | [ ] |
-| `onlinesales-ai/kuberService` | retailium-write | write | [ ] |
-| `onlinesales-ai/acquire-ui` | ui | read | [ ] |
-| `onlinesales-ai/ad-sim` | ui | read | [ ] |
-| `onlinesales-ai/admin-ui` | ui | read | [ ] |
-| `onlinesales-ai/brandads-ui` | ui | read | [ ] |
-| `onlinesales-ai/bulk-actions` | ui | read | [ ] |
-| `onlinesales-ai/captain-js` | ui | read | [ ] |
-| `onlinesales-ai/chrome-extension-icon-changer` | ui | read | [ ] |
-| `onlinesales-ai/developers-ui` | ui | read | [ ] |
-| `onlinesales-ai/domain-config-updator` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-admin-ui` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-maverick-ui` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-microsite-monitor` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-microsites` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-microsites-strapi` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-partner-ui` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-pulse-ui` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui-v2` | ui | read | [ ] |
-| `onlinesales-ai/hyperlocal-ui-qa` | ui | write | [ ] |
-| `onlinesales-ai/iab-url-verification` | ui | read | [ ] |
-| `onlinesales-ai/in-store-web-player` | ui | read | [ ] |
-| `onlinesales-ai/maverick-ui` | ui | read | [ ] |
-| `onlinesales-ai/multiVerseService` | ui | read | [ ] |
-| `onlinesales-ai/os-cms` | ui | read | [ ] |
-| `onlinesales-ai/os-ui-doc` | ui | read | [ ] |
-| `onlinesales-ai/osmos-lead-form` | ui | read | [ ] |
-| `onlinesales-ai/osmos-pulse-qa` | ui | write | [ ] |
-| `onlinesales-ai/osmos-react-native-sdk` | ui | read | [ ] |
-| `onlinesales-ai/osmos-ui-qa` | ui | write | [ ] |
-| `onlinesales-ai/osmos-web-sdk` | ui | read | [ ] |
-| `onlinesales-ai/osmos-web-sdk-playground` | ui | read | [ ] |
-| `onlinesales-ai/ott-ui` | ui | read | [ ] |
-| `onlinesales-ai/paypal-web-internal-sdk` | ui | read | [ ] |
-| `onlinesales-ai/paypal-web-sdk` | ui | read | [ ] |
-| `onlinesales-ai/placement-automation` | ui | read | [ ] |
-| `onlinesales-ai/rmhc` | ui | read | [ ] |
-| `onlinesales-ai/rmhc-ui` | ui | read | [ ] |
-| `onlinesales-ai/secure-api-demo` | ui | read | [ ] |
-| `onlinesales-ai/shared-ui` | ui | read | [ ] |
-| `onlinesales-ai/smm-ui` | ui | read | [ ] |
-| `onlinesales-ai/strapi-hyperlocal` | ui | write | [ ] |
-| `onlinesales-ai/strapi-osmos` | ui | write | [ ] |
-| `onlinesales-ai/ui-app-boilerplate` | ui | read | [ ] |
-| `onlinesales-ai/ui-domain-configs` | ui | read | [ ] |
-| `onlinesales-ai/ui-localium-domain-configs` | ui | read | [ ] |
-| `onlinesales-ai/ui-onboarding` | ui | read | [ ] |
-| `onlinesales-ai/ui-tools` | ui | read | [ ] |
-| `onlinesales-ai/acquire-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/ad-sim` | ui-admin | admin | [ ] |
-| `onlinesales-ai/admin-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/brandads-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/bulk-actions` | ui-admin | admin | [ ] |
-| `onlinesales-ai/captain-js` | ui-admin | admin | [ ] |
-| `onlinesales-ai/chrome-extension-icon-changer` | ui-admin | admin | [ ] |
-| `onlinesales-ai/developers-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/domain-config-updator` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-admin-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-maverick-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-microsite-monitor` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-microsites` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-microsites-strapi` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-partner-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-pulse-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui-v2` | ui-admin | admin | [ ] |
-| `onlinesales-ai/hyperlocal-ui-qa` | ui-admin | write | [ ] |
-| `onlinesales-ai/iab-url-verification` | ui-admin | admin | [ ] |
-| `onlinesales-ai/in-store-web-player` | ui-admin | admin | [ ] |
-| `onlinesales-ai/maverick-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/multiVerseService` | ui-admin | admin | [ ] |
-| `onlinesales-ai/os-cms` | ui-admin | admin | [ ] |
-| `onlinesales-ai/os-ui-doc` | ui-admin | admin | [ ] |
-| `onlinesales-ai/osmos-iframe-sdk` | ui-admin | admin | [ ] |
-| `onlinesales-ai/osmos-lead-form` | ui-admin | admin | [ ] |
-| `onlinesales-ai/osmos-pulse-qa` | ui-admin | write | [ ] |
-| `onlinesales-ai/osmos-react-native-sdk` | ui-admin | admin | [ ] |
-| `onlinesales-ai/osmos-ui-qa` | ui-admin | admin | [ ] |
-| `onlinesales-ai/osmos-web-sdk` | ui-admin | admin | [ ] |
-| `onlinesales-ai/osmos-web-sdk-playground` | ui-admin | admin | [ ] |
-| `onlinesales-ai/ott-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/paypal-web-internal-sdk` | ui-admin | admin | [ ] |
-| `onlinesales-ai/paypal-web-sdk` | ui-admin | admin | [ ] |
-| `onlinesales-ai/placement-automation` | ui-admin | admin | [ ] |
-| `onlinesales-ai/rmhc` | ui-admin | admin | [ ] |
-| `onlinesales-ai/rmhc-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/secure-api-demo` | ui-admin | read | [ ] |
-| `onlinesales-ai/shared-ui` | ui-admin | admin | [ ] |
-| `onlinesales-ai/smm-ui` | ui-admin | maintain | [ ] |
-| `onlinesales-ai/strapi-hyperlocal` | ui-admin | admin | [ ] |
-| `onlinesales-ai/strapi-osmos` | ui-admin | admin | [ ] |
-| `onlinesales-ai/ui-app-boilerplate` | ui-admin | admin | [ ] |
-| `onlinesales-ai/ui-domain-configs` | ui-admin | admin | [ ] |
-| `onlinesales-ai/ui-localium-domain-configs` | ui-admin | admin | [ ] |
-| `onlinesales-ai/ui-onboarding` | ui-admin | admin | [ ] |
-| `onlinesales-ai/ui-tools` | ui-admin | admin | [ ] |
-| `onlinesales-ai/shared-ui` | ui-team-be-members | write | [ ] |
-| `onlinesales-ai/acquire-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/ad-sim` | ui-write | write | [ ] |
-| `onlinesales-ai/admin-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/brandads-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/bulk-actions` | ui-write | write | [ ] |
-| `onlinesales-ai/captain-js` | ui-write | write | [ ] |
-| `onlinesales-ai/chrome-extension-icon-changer` | ui-write | write | [ ] |
-| `onlinesales-ai/developers-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/domain-config-updator` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-admin-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-maverick-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-microsite-monitor` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-microsites` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-microsites-strapi` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-partner-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-pulse-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-shared-ui-v2` | ui-write | write | [ ] |
-| `onlinesales-ai/hyperlocal-ui-qa` | ui-write | write | [ ] |
-| `onlinesales-ai/iab-url-verification` | ui-write | write | [ ] |
-| `onlinesales-ai/in-store-web-player` | ui-write | write | [ ] |
-| `onlinesales-ai/live-ads-plugin` | ui-write | write | [ ] |
-| `onlinesales-ai/maverick-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/multiVerseService` | ui-write | write | [ ] |
-| `onlinesales-ai/os-cms` | ui-write | write | [ ] |
-| `onlinesales-ai/os-ui-doc` | ui-write | write | [ ] |
-| `onlinesales-ai/osmos-iframe-sdk` | ui-write | write | [ ] |
-| `onlinesales-ai/osmos-lead-form` | ui-write | write | [ ] |
-| `onlinesales-ai/osmos-pulse-qa` | ui-write | write | [ ] |
-| `onlinesales-ai/osmos-react-native-sdk` | ui-write | write | [ ] |
-| `onlinesales-ai/osmos-ui-qa` | ui-write | write | [ ] |
-| `onlinesales-ai/osmos-web-sdk` | ui-write | write | [ ] |
-| `onlinesales-ai/osmos-web-sdk-playground` | ui-write | write | [ ] |
-| `onlinesales-ai/ott-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/paypal-web-internal-sdk` | ui-write | write | [ ] |
-| `onlinesales-ai/paypal-web-sdk` | ui-write | write | [ ] |
-| `onlinesales-ai/placement-automation` | ui-write | write | [ ] |
-| `onlinesales-ai/rmhc` | ui-write | write | [ ] |
-| `onlinesales-ai/rmhc-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/secure-api-demo` | ui-write | read | [ ] |
-| `onlinesales-ai/shared-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/smm-ui` | ui-write | write | [ ] |
-| `onlinesales-ai/sofie-ai` | ui-write | write | [ ] |
-| `onlinesales-ai/sofie-finance-agent` | ui-write | write | [ ] |
-| `onlinesales-ai/sofie-research-agent` | ui-write | write | [ ] |
-| `onlinesales-ai/sofie-shared` | ui-write | write | [ ] |
-| `onlinesales-ai/strapi-hyperlocal` | ui-write | write | [ ] |
-| `onlinesales-ai/strapi-osmos` | ui-write | write | [ ] |
-| `onlinesales-ai/ui-app-boilerplate` | ui-write | write | [ ] |
-| `onlinesales-ai/ui-domain-configs` | ui-write | read | [ ] |
-| `onlinesales-ai/ui-localium-domain-configs` | ui-write | read | [ ] |
-| `onlinesales-ai/ui-onboarding` | ui-write | write | [ ] |
-| `onlinesales-ai/ui-tools` | ui-write | write | [ ] |
-| `demo-repository` | ui | admin | [ ] |
+| `onlinesales-ai/workload-identity-automation` | frigga-cloud | admin | [ ] |
 | `GithubOrgPoliciesRestriction` | infra | admin | [ ] |
+| `demo-repository` | ui | admin | [ ] |
