@@ -13,15 +13,15 @@ This document outlines the steps required to deploy and run the GitHub Governanc
     *   GitHub CLI (`gh`) installed and authenticated.
     *   Python `pandas` library (`pip install pandas`).
 3.  **Data Files:**
-    *   `.github/scripts/github-full-inventory.csv`
-    *   `.github/scripts/team-access-by-repo.csv`
+    *   `script/github-full-inventory.csv`
+    *   `script/team-access-by-repo.csv`
 
 ## Deployment Strategy
 
 ### Phase 1: Local Testing & Validation (Dry Run)
 *Status: Completed during development.*
 
-1.  Ensure `.csv` files are placed in `.github/scripts/`.
+1.  Ensure `.csv` files are placed in `script/`.
 2.  Set the target organization environment variable:
     ```bash
     export ORGANIZATION="YourTestOrgName"
@@ -39,14 +39,14 @@ Due to the volume of repositories (412+), it is recommended to run the scripts f
 
 1.  **Apply Team Properties:**
     ```bash
-    python .github/scripts/apply_team_properties.py
+    python script/apply_team_properties.py
     ```
     *Estimated time: ~10-15 minutes (due to intentional API delays).*
     *Validation: Spot-check 3-5 repositories in the GitHub UI to ensure the `Team` custom property is populated correctly.*
 
 2.  **Enforce Branch Protection:**
     ```bash
-    python .github/scripts/enforce_branch_rules.py
+    python script/enforce_branch_rules.py
     ```
     *Estimated time: ~15-20 minutes.*
     *Validation: Spot-check a repository with a `stage` and a `main`/`release` branch to verify the 2-approval requirement and status checks are active.*

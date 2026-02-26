@@ -36,11 +36,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
           ORGANIZATION: 'ChinmayDhokTestOrg'
-        run: python .github/scripts/apply_team_properties.py
+        run: python script/apply_team_properties.py
 
       - name: Run Enforce Branch Rules Script
         if: ${{ github.event.inputs.sync_branch_rules == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
           ORGANIZATION: 'ChinmayDhokTestOrg'
-        run: python .github/scripts/enforce_branch_rules.py
+        run: python script/enforce_branch_rules.py

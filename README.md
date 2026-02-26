@@ -4,9 +4,9 @@ This repository contains scripts and configurations for automating governance po
 
 ## Quick Links
 
-- [Technical Specification](TECH_SPEC.md): A detailed overview of the script logic and API integration.
-- [Deployment Plan](DEPLOYMENT_PLAN.md): Instructions for running the tools locally or in production.
-- [Wiki Outline](WIKI.md): Recommended structure for a team-facing documentation wiki.
+- [Technical Specification](doc/TECH_SPEC.md): A detailed overview of the script logic and API integration.
+- [Deployment Plan](doc/DEPLOYMENT_PLAN.md): Instructions for running the tools locally or in production.
+- [Wiki Outline](doc/WIKI.md): Recommended structure for a team-facing documentation wiki.
 
 ## Core Features
 
@@ -16,12 +16,12 @@ This repository contains scripts and configurations for automating governance po
 ## Prerequisites
 
 - **Authentication:** `gh auth login` with appropriate scopes (`Administration`, `Custom properties`).
-- **Data Files:** Ensure `github-full-inventory.csv` and `team-access-by-repo.csv` are present in `.github/scripts/`.
+- **Data Files:** Ensure `github-full-inventory.csv` and `team-access-by-repo.csv` are present in `script/`.
 
 ## Usage
 
 Example execution for applying team properties:
 ```bash
 export ORGANIZATION="YourTestOrgName"
-python .github/scripts/apply_team_properties.py
+python script/apply_team_properties.py
 ```
