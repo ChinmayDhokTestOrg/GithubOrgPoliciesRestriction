@@ -9,7 +9,12 @@ on:
         type: string
         default: 'ChinmayDhokTestOrg'
       sync_properties:
-        description: 'Sync Custom Properties (Team, Project, BU mapping)'
+        description: 'Sync Custom Property Schemas (Create Org Properties)'
+        required: true
+        type: boolean
+        default: false
+      assign_properties:
+        description: 'Assign Teams to Repositories (via MD Mapping)'
         required: true
         type: boolean
         default: false
@@ -44,7 +49,7 @@ jobs:
         run: ./script/create_org_properties.sh
 
       - name: Apply Properties (Markdown Mapping)
-        if: ${{ github.event.inputs.sync_properties == 'true' }}
+        if: ${{ github.event.inputs.assign_properties == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
           ORGANIZATION: ${{ github.event.inputs.organization_name }}
