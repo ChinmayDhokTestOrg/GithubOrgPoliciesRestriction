@@ -31,6 +31,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas
 
+      - name: Check for Admin Token
+        env:
+          GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error title=Missing Secret::The ORG_ADMIN_TOKEN secret is not set in the repository."
+            echo "::error::Please create a repository secret named ORG_ADMIN_TOKEN containing a Personal Access Token (PAT) with Admin and Custom Property scopes."
+            exit 1
+          fi
+
       - name: Run Apply Team Properties Script
         if: ${{ github.event.inputs.sync_properties == 'true' }}
         env:
