@@ -23,6 +23,22 @@ def main():
         sys.exit(1)
 
     print(f"Loading organization mapping data for '{ORG_NAME}'...")
+    print(f"Note: Ensure the Custom Property 'Team' is created in the Org Settings first.")
+    # Attempt to create the 'Team' property at the org level if it doesn't exist.
+    # We swallow errors here in case it already exists.
+    try:
+        prop_payload = {
+            "value_type": "string",
+            "required": False,
+            "description": "The team responsible for this repository."
+        }
+        with open("prop_payload.json", "w") as f:
+            json.dump(prop_payload, f)
+        run_gh_command(["api", "--method", "PUT", "-H", "Accept: application/vnd.github+json", f"orgs/{ORG_NAME}/properties/schema/Team", "--input", "prop_payload.json"])
+        if os.path.exists("prop_payload.json"):
+            os.remove("prop_payload.json")
+    except Exception as e:
+        pass
     
     try:
         access_df = pd.read_csv(ACCESS_FILE)

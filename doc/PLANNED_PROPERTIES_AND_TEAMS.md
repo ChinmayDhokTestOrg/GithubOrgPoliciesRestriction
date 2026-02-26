@@ -1,22 +1,21 @@
 # Planned Parameters, Custom Properties and Team Names
 
-This document outlines the planned structure for parameters, custom properties, and team names to be added and enforced within the GitHub Organization.
+This document outlines the planned structure for parameters, custom properties, and team names to be configured at the Organization level natively via the GitHub API.
 
-## 1. Parameters
-Parameters required for GitHub Actions workflows or automation scripts to function correctly.
+## 1. Parameters (Workflow Secrets)
+Parameters required for GitHub Actions workflows or automation scripts to function properly.
 
-- **`GH_TOKEN` / `ORG_ADMIN_TOKEN`**: A PAT or App Token with sufficient scopes (`Administration`, `Custom properties`) to manage organization resources.
-- **`ORGANIZATION`**: The name of the target GitHub organization.
-- **`sync_properties`** *(Boolean)*: Workflow input to trigger the custom property synchronization.
-- **`sync_branch_rules`** *(Boolean)*: Workflow input to trigger branch protection rule enforcement.
+- **`ORG_ADMIN_TOKEN`**: A PAT or App Token with sufficient scopes (`admin:org`, `Custom properties: read/write`) stored as a repository secret.
+- **`ORGANIZATION`**: The name of the target GitHub organization, configured as an environment variable in the workflow.
 
-## 2. Custom Properties
-Custom Properties are used to organize repositories and enforce metadata.
+## 2. Organization Custom Properties
+Custom Properties are used to organize repositories and enforce metadata systematically. These are managed centrally at the Org level.
 
-- **`Team`** *(String, Required)*: Associates a repository with its primary owning team.
-- **`Environment`** *(Single select)*: Specifies the intended deployment environment (e.g., `Development`, `Staging`, `Production`, `Sandbox`).
-- **`Compliance_Level`** *(Single select)*: Determines the compliance requirements of a repository (e.g., `High`, `Medium`, `Low`).
-- **`Data_Sensitivity`** *(Single select)*: Indicates the classification of data handled by the repository (e.g., `Public`, `Internal`, `Confidential`, `Restricted`).
+- **`Team`** *(String, Optional)*: Associates a repository with its primary owning logical team.
+- **`BU`** *(String, Optional)*: The Business Unit that this repository belongs to.
+- **`Environment`** *(Single select: `Development`, `Staging`, `Production`, `Sandbox`, `DR`)*: Specifies the intended deployment environment.
+- **`Compliance_Level`** *(Single select: `High`, `Medium`, `Low`, `None`)*: Determines the compliance requirements of a repository.
+- **`Data_Sensitivity`** *(Single select: `Public`, `Internal`, `Confidential`, `Restricted`)*: Indicates the classification of data handled by the repository.
 
 ## 3. Team Names
 Proposed standardized names for GitHub Teams to map access and ownership logic effectively.

@@ -8,7 +8,8 @@ The solution relies on the GitHub CLI (`gh`) and the GitHub REST API to interact
 
 ### Components
 - **Scripts:**
-  - `enforce_branch_rules.py`: Applies branch protection rules to `stage` and production (`release`/`main`) branches.
+  - `create_org_properties.sh`: Org-level custom property schema definitions.
+  - `create_org_ruleset.sh`: Applies branch protections across the org via a GitHub Organization Ruleset.
   - `apply_team_properties.py`: Maps repository access to GitHub Custom Properties (`Team`).
 - **Data Sources:**
   - `github-full-inventory.csv`: A comprehensive list of all repositories in the organization, including metadata like branch count and primary language.
@@ -18,21 +19,8 @@ The solution relies on the GitHub CLI (`gh`) and the GitHub REST API to interact
 
 ## 3. Detailed Design
 
-### 3.1 Branch Protection Enforcer (`enforce_branch_rules.py`)
-This script reads the repository inventory and applies specific protection rules based on the branch name.
-
-- **Dependencies:** `pandas`, `subprocess`, `json`, `os`, `sys`, `time`
-- **Input:** `github-full-inventory.csv`
-- **Logic:**
-  1. Parses the CSV to extract a unique list of repositories.
-  2. Iterates through each repository.
-  3. Checks for the existence of a `stage` branch. If found, applies rules:
-     - Require Pull Request
-     - 2 Approvals required
-     - Enforce Admins
-     - No Force Pushes
-     - No Deletions
-  4. Checks for the existence of `release` or `main` (prioritizing `release`). If found, applies similar rules, but includes a specific status check context: `Verify Source Branch is Stage` (if applicable/configured).
+### 3.1 Organization Ruleset Creator (`create_org_ruleset.sh`)
+This bash script uses the `gh api` to create a singular organization-level ruleset that targets all repositories (`~ALL`) and enforces required pull requests and approvals on `stage`, `release`, `main`, and `master` branches. This eliminates the need for repository-by-repository looping for branch enforcement.
 
 ### 3.2 Team Property Synchronizer (`apply_team_properties.py`)
 This script translates team access rights into a GitHub Custom Property named "Team" on each repository.

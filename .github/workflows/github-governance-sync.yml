@@ -41,16 +41,23 @@ jobs:
             exit 1
           fi
 
-      - name: Run Apply Team Properties Script
+      - name: Create Custom Property Schemas
+        if: ${{ github.event.inputs.sync_properties == 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
+          ORGANIZATION: 'ChinmayDhokTestOrg'
+        run: ./script/create_org_properties.sh
+
+      - name: Apply Team Properties (CSV Mapping)
         if: ${{ github.event.inputs.sync_properties == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
           ORGANIZATION: 'ChinmayDhokTestOrg'
         run: python script/apply_team_properties.py
 
-      - name: Run Enforce Branch Rules Script
+      - name: Create/Update Organization Ruleset
         if: ${{ github.event.inputs.sync_branch_rules == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.ORG_ADMIN_TOKEN }}
           ORGANIZATION: 'ChinmayDhokTestOrg'
-        run: python script/enforce_branch_rules.py
+        run: ./script/create_org_ruleset.sh
