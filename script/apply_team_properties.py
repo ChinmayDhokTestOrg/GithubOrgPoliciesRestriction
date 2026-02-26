@@ -129,12 +129,14 @@ def main():
         if stderr:
             print(f"  [ERROR] Failed to map property on '{repo}': {stderr}")
             fail_count += 1
+            # Skip rate-limit sleep if it's just a 404 Not Found (e.g., repo doesn't exist in test org)
+            if not DRY_RUN and "HTTP 404" not in stderr:
+                time.sleep(1.5)
         else:
             print(f"  [SUCCESS] Assigned teams: {teams}")
             success_count += 1
-             
-        if not DRY_RUN:
-            time.sleep(1.5)
+            if not DRY_RUN:
+                time.sleep(1.5)
 
     if os.path.exists("payload.json"):
         os.remove("payload.json")
